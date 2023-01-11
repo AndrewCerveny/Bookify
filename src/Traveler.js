@@ -7,6 +7,5 @@ class Traveler {
     showFirstName() {
         return this.name.split(' ')[0]
     }
-
 }
 export default Traveler
