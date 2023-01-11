@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Kalam&family=Saira+Condensed&display=swap"
+    rel="stylesheet">
   <title> Bookify </title>
 </head>
 <header>
@@ -18,7 +22,7 @@
   <aside class="left-side-bar">
     <section class="logo-section">
       <div class="company-wrapper"> 
-        <h1 class="company-Name"> Bookify </h1>
+        <h1 class="company-Name"> Welcome to Bookify! </h1>
       </div>
       <img src="" alt="Bookify company Logo"> 
     </section>
@@ -26,30 +30,33 @@
       <div class="form-intro-wrapper"> 
         <h2 class="form-intro"> Want to Book a trip? </h2>
       </div>
+      <div class="error-wrapper">
+        <h2 class="error-message"> Error message handler  </h2>
+      </div>
     <form>
       <fieldset class="Booking Options" id="Booking-form">
-        <legend> Place Your booking requirements here </legend>
+        <legend class="hidden"> Place Your booking requirements here </legend>
           <section class="date-wrapper">
             <h2> Choose a Date </h2>
-              <label for="userChosenDate"> Calendar Input </label>
+              <label for="userChosenDate " class="hidden"> Calendar Input </label>
               <input class = input-booking-date id="userChosenDate" type ="date" placeholder="Date">
           </section>
           <section class=" destination-form-wrapper">
             <h2> Choose a Destination </h2>
-              <label for="chosenDestination"> Destination Input </label>
+              <label for="chosenDestination" class="hidden"> Destination Input </label>
               <select class=input-destination id="chosenDestination" type="text" placeholder="Destinations">
                 <option value=""> Destination1</option>
                 <option value=""> Destination2 </option>
             </select> 
           </section>
-          <section>
+          <section class="duration-trip-wrapper">
             <h2> Duration of trip </h2>
-              <label for="duration-length"> Duration length </label>
+              <label for="duration-length" class="hidden"> Duration length </label>
               <input class="duration" id="duration-length" type="number" placeholder="Duration" min="1">
           </section>
-          <section>
+          <section class="traveling-people-wrapper">
             <h2> How many Traveling? </h2>
-              <label for="traver-quantity"> Duration length </label>
+              <label for="traver-quantity" class="hidden"> Duration length </label>
               <input class="traveler-count" id="traver-quantity" type="number" placeholder="Travelers" min="1">
           </section>
           <div class=" button-styler"> 
@@ -58,9 +65,9 @@
       </fieldset>
     </form>
     <section class="estimated-cost-display">
-      <h2> Estimated Cost </h2>
       <div class=" dollar-styler"> 
-        <h2> $1,300 dollars </h2>
+      <h2> Estimated Cost: </h2>
+      <h2> $1,300 dollars </h2>
       </div>
       <h3> *** Price includes a 10% travel agent fee </h3>
     </section>
@@ -78,33 +85,42 @@
   </section>
   <section class="trips-display">
     <article class="upcoming-trips-display">
-      <section class="trip-info-card"> 
-        <img src="" alt="destinationImg">
-        <h2>Destination name <span class="upcoming-destin"> name of destination </span></h2>
-        <h2>How many Travelers <span class="upcoming-nums-travelers" number of travelers</span> </h2>
-        <h2>Date of Trip <span class="upcoming-date">The Trips Date </span></h2>
-        <h2> Duration of Trip <span class="upcoming-dur"> The Trips Duration </span></h2>
-        <h2> Status <span class="upcoming-stat"> Status of trip </span></h2>
+      <h2> Upcoming trips </h2>
+      <section class="trip-info-card-upcom"> 
+        <section class="book-card">
+          <img src="" alt="destinationImg">
+          <h2>Destination name: <span class="upcoming-destin"> name of destination </span></h2>
+          <h2>How many Travelers: <span class="upcoming-nums-travelers" number of travelers</span> </h2>
+          <h2>Date of Trip: <span class="upcoming-date">The Trips Date </span></h2>
+          <h2> Duration of Trip: <span class="upcoming-dur"> The Trips Duration </span></h2>
+          <h2> Status: <span class="upcoming-stat"> Status of trip </span></h2>
+        </section>
       </section>
     </article>
     <article class="pending-trips-display">
-      <section class="trip-info-card">
-        <img src="" alt="destinationImg">
-        <h2>Destination name <span> name of destination </span></h2>
-        <h2>How many Travelers <span> number of travelers</span> </h2>
-        <h2>Date of Trip <span>The Trips Date </span></h2>
-        <h2> Duration of Trip <span> The Trips Duration </span></h2>
-        <h2> Status <span> Status of trip </span></h2>
+      <h2> Pending trips </h2>
+      <section class="trip-info-card-pend">
+        <section class="book-card"> 
+          <img src="" alt="destinationImg">
+          <h2>Destination name: <span> name of destination </span></h2>
+          <h2>How many Travelers: <span> number of travelers</span> </h2>
+          <h2>Date of Trip: <span>The Trips Date </span></h2>
+          <h2> Duration of Trip: <span> The Trips Duration </span></h2>
+          <h2> Status: <span> Status of trip </span></h2>
+        </section>
       </section>
     </article>
     <article class="past-trips-display">
-      <section class="trip-info-card">
-        <img src="" alt="destinationImg">
-        <h2>Destination name <span> name of destination </span></h2>
-        <h2>How many Travelers <span> number of travelers</span> </h2>
-        <h2>Date of Trip <span>The Trips Date </span></h2>
-        <h2> Duration of Trip <span> The Trips Duration </span></h2>
-        <h2> Status <span> Status of trip </span></h2>
+      <h2> Past trips </h2>
+      <section class="trip-info-card-past">
+        <section class="book-card"> 
+          <img src="" alt="destinationImg">
+          <h2>Destination name: <span> name of destination </span></h2>
+          <h2>How many Travelers: <span> number of travelers</span> </h2>
+          <h2>Date of Trip: <span>The Trips Date </span></h2>
+          <h2> Duration of Trip: <span> The Trips Duration </span></h2>
+          <h2> Status: <span> Status of trip </span></h2>
+        </section>
       </section>
     </article>
   </section>

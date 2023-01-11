@@ -1,3 +1,185 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+/* color pallet */
+/* #D7E9B9:MEDIUM
+#FFFBAC:LIGHEST
+#FFD495:MEDIUM
+#FAAB78:DARKEST */
+
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: 'Kalam',cursive;
+}
+
+/* semantic framing */
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  border:2px solid black;
+  height: 4rem; 
+}
+aside {
+display: flex;
+flex-direction: column;
+border: 2px solid black;
+width: 30%;
+height:100vh;
+margin-top: 4rem;
+}
+form {
+  border: 2px solid;
+  margin-top: 4rem;
+  width: 100%;
+  height: 23rem;
+  display: flex;
+  flex-direction: column;
+}
+fieldset{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+select,
+input {
+width: 10rem;
+height: 2rem;
+}
+article {
+  border:1px solid;
+  width: 73%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 13rem;
+}
+
+
+
+/* main Body Area */
+
+.customer-welcome {
+  display: flex;
+  position: relative;
+  border: 2px solid;
+  left: 31rem;
+  top: -50rem;
+  width: 63%;
+  height: 11rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.trips-display {
+  position: relative;
+  left: 31rem;
+  bottom: 46rem;
+  border: 2px solid black;
+  width: 63%;
+  height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items:center;
+}
+     
+
+/* Aside Area  */
+.logo-section {
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid;
+
+}
+.form-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+.error-wrapper {
+  display: flex;
+  margin-top: 2rem;
+  width: 100%;
+  height: 5rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+.form-intro-wrapper {
+  margin-top: 3rem;
+  display: flex;
+   border: sold;
+  border: solid black;
+  height: 3rem;
+  width: 21rem;
+  justify-content: center;
+}
+
+.traveling-people-wrapper,
+.duration-trip-wrapper,
+.destination-form-wrapper,
+.date-wrapper {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 10rem;
+  align-items: center;
+  width: 100%;  
+}
+.button-styler{
+  display: flex;
+  height: 3rem;
+  width: 57%;
+  align-content: center;
+  justify-content: center;
+  border:1px solid black; 
+}
+.book-input-sub {
+  height: 2rem;
+  margin-top: 7px;
+  width: 83%;
+  border-radius: 3%;
+}
+.estimated-cost-display{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dollar-styler {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.trip-info-card-past,
+.trip-info-card-pend,
+.trip-info-card-upcom {
+  border: 2px solid black;
+  width: 80%;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+  align-items: center;
+  height: 10rem;
+  
+}
+.book-card {
+  border: 1px solid black;
+  height: 17rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  display: none; 
 }
