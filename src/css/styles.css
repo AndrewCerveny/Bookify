@@ -42,6 +42,13 @@ input {
 width: 10rem;
 height: 2rem;
 }
+article {
+  border:1px solid;
+  width: 73%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 
 
@@ -65,8 +72,13 @@ height: 2rem;
   bottom: 46rem;
   border: 2px solid black;
   width: 63%;
-  height: 71vh;
+  height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items:center;
 }
+     
 
 /* Aside Area  */
 .logo-section {
@@ -139,9 +151,19 @@ height: 2rem;
   width: 100%;
   justify-content: space-around;
 }
-
-
-
+.trip-info-card-past,
+.trip-info-card-pend,
+.trip-info-card-upcom {
+  border: 2px solid black;
+  width: 80%;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+  align-items: center;
+}
+.book-card {
+border: 1px solid black;
+}
 
 .hidden {
   display: none; 
