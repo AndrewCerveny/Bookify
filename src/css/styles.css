@@ -1,7 +1,15 @@
+/* color pallet */
+/* #D7E9B9:MEDIUM
+#FFFBAC:LIGHEST
+#FFD495:MEDIUM
+#FAAB78:DARKEST */
+
+
 * {
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family: 'Kalam',cursive;
 }
 
 /* semantic framing */
@@ -48,6 +56,7 @@ article {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 13rem;
 }
 
 
@@ -123,7 +132,7 @@ article {
   border: 1px solid black;
   flex-direction: row;
   justify-content: space-around;
-  height: 4rem;
+  height: 10rem;
   align-items: center;
   width: 100%;  
 }
@@ -160,9 +169,15 @@ article {
   overflow-y: scroll;
   flex-direction: column;
   align-items: center;
+  height: 10rem;
+  
 }
 .book-card {
-border: 1px solid black;
+  border: 1px solid black;
+  height: 17rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hidden {
