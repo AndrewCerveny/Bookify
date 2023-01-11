@@ -52,43 +52,63 @@
               <label for="traver-quantity"> Duration length </label>
               <input class="traveler-count" id="traver-quantity" type="number" placeholder="Travelers" min="1">
           </section>
-          <button class="book-Input-Sub" type="submit"> Submit Booking </button>
+          <div class=" button-styler"> 
+            <button class="book-input-sub" type="submit"> Submit Booking </button>
+          </div>
       </fieldset>
     </form>
-
-    
-
-
-  
-  
-    <div class="header-form">
-    <h2>Log your activity</h2>
-    <label class="hidden" for="input-date">Calendar Input</label>
-    <input class="input-date hidden" id="input-date" type="date" placeholder="Date">
-  </div>
-  <fieldset class="category-options" id="post-form">
-    <legend class="hidden">Post Your Stats Here</legend>
-    <label for="sleep-input">Sleep</label>
-    <input type="radio" id="sleep-input" name="activity" value="sleep" tabindex="0" aria-checked="false">
-    <label for="hydration-input">Hydration</label>
-    <input type="radio" id="hydration-input" name="activity" tabindex="0" aria-checked="false">
-    <label for="activity-input">Activity</label>
-    <input type="radio" id="activity-input" name="activity" tabindex="0" aria-checked="false">
-    <button type="submit" id="input-btn" name="activity" tabindex="0">Show Form</button>
-  </fieldset>
-
-
-
-
-
-
-
-
-
-      </form>
+    <section class="estimated-cost-display">
+      <h2> Estimated Cost </h2>
+      <div class=" dollar-styler"> 
+        <h2> $1,300 dollars </h2>
+      </div>
+      <h3> *** Price includes a 10% travel agent fee </h3>
     </section>
-  </aside>  
-  </main>
+    </section>
+  </aside>
+  <section class="customer-welcome">
+    <h2> Welcome, first Name </h2>
+    <div class="today-wrapper"> 
+      <h3> Today's date is </h3>
+    </div>
+    <div class="anual-spending-wrapper"> 
+      <h3> Total spent this year </h3>
+      <h4> $1,260 dollars </h4>
+    </div>
+  </section>
+  <section class="trips-display">
+    <article class="upcoming-trips-display">
+      <section class="trip-info-card"> 
+        <img src="" alt="destinationImg">
+        <h2>Destination name <span class="upcoming-destin"> name of destination </span></h2>
+        <h2>How many Travelers <span class="upcoming-nums-travelers" number of travelers</span> </h2>
+        <h2>Date of Trip <span class="upcoming-date">The Trips Date </span></h2>
+        <h2> Duration of Trip <span class="upcoming-dur"> The Trips Duration </span></h2>
+        <h2> Status <span class="upcoming-stat"> Status of trip </span></h2>
+      </section>
+    </article>
+    <article class="pending-trips-display">
+      <section class="trip-info-card">
+        <img src="" alt="destinationImg">
+        <h2>Destination name <span> name of destination </span></h2>
+        <h2>How many Travelers <span> number of travelers</span> </h2>
+        <h2>Date of Trip <span>The Trips Date </span></h2>
+        <h2> Duration of Trip <span> The Trips Duration </span></h2>
+        <h2> Status <span> Status of trip </span></h2>
+      </section>
+    </article>
+    <article class="past-trips-display">
+      <section class="trip-info-card">
+        <img src="" alt="destinationImg">
+        <h2>Destination name <span> name of destination </span></h2>
+        <h2>How many Travelers <span> number of travelers</span> </h2>
+        <h2>Date of Trip <span>The Trips Date </span></h2>
+        <h2> Duration of Trip <span> The Trips Duration </span></h2>
+        <h2> Status <span> Status of trip </span></h2>
+      </section>
+    </article>
+  </section>
+</main>
 
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   
