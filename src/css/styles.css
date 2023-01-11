@@ -37,6 +37,13 @@ fieldset{
   justify-content: space-between;
   align-items: center;
 }
+select,
+input {
+width: 10rem;
+height: 2rem;
+}
+
+
 
 /* main Body Area */
 
@@ -95,6 +102,7 @@ fieldset{
   width: 21rem;
   justify-content: center;
 }
+
 .traveling-people-wrapper,
 .duration-trip-wrapper,
 .destination-form-wrapper,
@@ -105,9 +113,24 @@ fieldset{
   justify-content: space-around;
   height: 4rem;
   align-items: center;
-  width: 100%;
-  
+  width: 100%;  
 }
+.button-styler{
+  display: flex;
+  height: 3rem;
+  width: 57%;
+  align-content: center;
+  justify-content: center;
+  border:1px solid black; 
+}
+.book-input-sub {
+  height: 2rem;
+  margin-top: 7px;
+  width: 83%;
+  border-radius: 3%;
+}
+
+
 
 .hidden {
   display: none; 
