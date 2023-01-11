@@ -129,6 +129,17 @@ height: 2rem;
   width: 83%;
   border-radius: 3%;
 }
+.estimated-cost-display{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dollar-styler {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
 
 
 
