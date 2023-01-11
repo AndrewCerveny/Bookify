@@ -1,3 +1,84 @@
+## Project title/ Assaignment given/ approx time spent on build
+A little info about your project and/ or overview that explains **what** the project is about.
+
+## Motivation
+A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+ 
+## Screenshots / deployment link if applicable
+Include logo/demo screenshot etc.
+
+## Tech/framework used
+Ex. -
+
+## Features
+What makes your project stand out?
+
+## Installation
+Provide step by step series of examples and explanations about how to get a development env running.
+
+## API Reference
+
+Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+
+## Tests
+Describe and show how to run the tests with code examples.
+
+## Contribute, background with expeirence timeframe 
+
+Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
+
+## Future extension
+- things you'd want to build but didn't have time to build
+
+## Challenges 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Webpack Starter Kit
 test test test
 ## Clone This Repo
