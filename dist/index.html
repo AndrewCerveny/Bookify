@@ -20,13 +20,70 @@
       <div class="company-wrapper"> 
         <h1 class="company-Name"> Bookify </h1>
       </div>
-      <img src="" alt=" Bookify company Logo"> 
+      <img src="" alt="Bookify company Logo"> 
     </section>
     <section class="form-container">
       <div class="form-intro-wrapper"> 
         <h2 class="form-intro"> Want to Book a trip? </h2>
       </div>
-      <form>
+    <form>
+      <fieldset class="Booking Options" id="Booking-form">
+        <legend> Place Your booking requirements here </legend>
+          <section class="date-wrapper">
+            <h2> Choose a Date </h2>
+              <label for="userChosenDate"> Calendar Input </label>
+              <input class = input-booking-date id="userChosenDate" type ="date" placeholder="Date">
+          </section>
+          <section class=" destination-form-wrapper">
+            <h2> Choose a Destination </h2>
+              <label for="chosenDestination"> Destination Input </label>
+              <select class=input-destination id="chosenDestination" type="text" placeholder="Destinations">
+                <option value=""> Destination1</option>
+                <option value=""> Destination2 </option>
+            </select> 
+          </section>
+          <section>
+            <h2> Duration of trip </h2>
+              <label for="duration-length"> Duration length </label>
+              <input class="duration" id="duration-length" type="number" placeholder="Duration" min="1">
+          </section>
+          <section>
+            <h2> How many Traveling? </h2>
+              <label for="traver-quantity"> Duration length </label>
+              <input class="traveler-count" id="traver-quantity" type="number" placeholder="Travelers" min="1">
+          </section>
+          <button class="book-Input-Sub" type="submit"> Submit Booking </button>
+      </fieldset>
+    </form>
+
+    
+
+
+  
+  
+    <div class="header-form">
+    <h2>Log your activity</h2>
+    <label class="hidden" for="input-date">Calendar Input</label>
+    <input class="input-date hidden" id="input-date" type="date" placeholder="Date">
+  </div>
+  <fieldset class="category-options" id="post-form">
+    <legend class="hidden">Post Your Stats Here</legend>
+    <label for="sleep-input">Sleep</label>
+    <input type="radio" id="sleep-input" name="activity" value="sleep" tabindex="0" aria-checked="false">
+    <label for="hydration-input">Hydration</label>
+    <input type="radio" id="hydration-input" name="activity" tabindex="0" aria-checked="false">
+    <label for="activity-input">Activity</label>
+    <input type="radio" id="activity-input" name="activity" tabindex="0" aria-checked="false">
+    <button type="submit" id="input-btn" name="activity" tabindex="0">Show Form</button>
+  </fieldset>
+
+
+
+
+
+
+
+
 
       </form>
     </section>
