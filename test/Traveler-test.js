@@ -12,7 +12,6 @@ describe('Traveler Class', function() {
   })
   
   it('Should be a function', function() {
-    
     expect(Traveler).to.be.a("function");
   });
   it('Should make an instance of Traveler', function() {
