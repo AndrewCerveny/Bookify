@@ -46,7 +46,7 @@ describe('Destination Repository Class', function() {
   })
   it("Should give a total cost include a 10% travel fee", function() {
     destinationRepo.findLocationById(1)
-    expect(destinationRepo.getTotalCost(4,5)).to.eql(2508)
+    expect(destinationRepo.getTotalCost(6,3)).to.eql('1782.00')
   })
   it("Should return all of the location names", function(){
     const destinationNames = [

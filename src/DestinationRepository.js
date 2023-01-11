@@ -25,8 +25,9 @@ class DestinationRepository {
         const flightCost = this.estCostPerTraveler(travelers)
         const total = lodgingCost + flightCost
         const fee = total * .1 
-        const theBill = total + fee 
-        return theBill
+        const est = total + fee 
+        const billFormat = est.toFixed(2)
+        return billFormat
     }
     getAllDest() {
        const allNames = this.allDestinations.map(place => place.destination)
