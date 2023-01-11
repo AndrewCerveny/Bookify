@@ -1,3 +1,45 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+/* semantic framing */
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  border:2px solid black;
+  height: 4rem; 
+}
+aside {
+display: flex;
+flex-direction: column;
+border: 2px solid black;
+width: 30%;
+height:100vh;
+}
+
+/* main Body Area */
+
+.customer-welcome {
+  display: flex;
+  position: relative;
+  border: 2px solid;
+  left: 31rem;
+  top: -49rem;
+  width: 63%;
+  height: 11rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.trips-display {
+  position: relative;
+  left: 31rem;
+  bottom: 46rem;
+  border: 2px solid black;
+  width: 63%;
+  height: 71vh;
 }
