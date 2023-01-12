@@ -66,17 +66,17 @@ const tripsData =  [
 "travelers": 5,
 "date": "2022/5/28",
 "duration": 20,
-"status": "pending",
+"status":"pending",
 "suggestedActivities": []
 },
 {
 "id": 8,
-"userID": 36,
-"destinationID": 39,
+"userID": 1,
+"destinationID": 4,
 "travelers": 6,
-"date": "2022/02/07",
+"date": "2022/10/12",
 "duration": 4,
-"status": "approved",
+"status": "pending",
 "suggestedActivities": []
 },
 {
@@ -140,4 +140,4 @@ const tripsData =  [
 "suggestedActivities": []
 }
 ]
-export default tripsData
+export default tripsData;
