@@ -61,13 +61,7 @@ describe('Trips Repository Class ', function() {
   it("Should contain all trips", function() {
     expect(tripRepo.allTrips).to.eql(sampleTrips)
   })
-  it("Should default a current Users Trips to null", function() {
-    expect(tripRepo.currentUserTrips).to.eql(null);
-  })
-  it('Should default annual trips to null', function() {
-    expect(tripRepo.usersAnnualTrips).to.eql(null);
-  })
-  it("Should contain a current users trips by id", function() {
+  it("Should track a current users trips by id", function() {
   const userTrips = [
   {
     id: 1,
@@ -132,73 +126,8 @@ describe('Trips Repository Class ', function() {
     ]
     expect(tripRepo.filterById(1)).to.eql(userTrips)
   })
-  it("Should store all of the users trips", function() {
-     const userTrips = [
-  {
-    id: 1,
-    userID: 1,
-    destinationID: 1,
-    travelers: 1,
-    date: '2022/09/16',
-    duration: 8,
-    status: 'approved',
-    suggestedActivities: []
-  },
-  {
-    id: 2,
-    userID: 1,
-    destinationID: 2,
-    travelers: 5,
-    date: '2022/10/04',
-    duration: 18,
-    status: 'pending',
-    suggestedActivities: []
-  },
-  {
-    id: 5,
-    userID: 1,
-    destinationID: 4,
-    travelers: 3,
-    date: '2021/10/07',
-    duration: 18,
-    status: 'pending',
-    suggestedActivities: []
-  },
-  {
-    id: 6,
-    userID: 1,
-    destinationID: 35,
-    travelers: 3,
-    date: '2021/11/19',
-    duration: 9,
-    status: 'approved',
-    suggestedActivities: []
-  },
-  {
-    id: 7,
-    userID: 1,
-    destinationID: 17,
-    travelers: 5,
-    date: '2022/5/28',
-    duration: 20,
-    status: 'pending',
-    suggestedActivities: []
-  },
-  {
-    id: 8,
-    userID: 1,
-    destinationID: 4,
-    travelers: 6,
-    date: '2022/10/12',
-    duration: 4,
-    status: 'pending',
-    suggestedActivities: []
-  }]
-    tripRepo.filterById(1)
-    expect(tripRepo.currentUserTrips).to.eql(userTrips)
-  })
-  it("Should store a users annual trips", function() {
-     tripRepo.filterById(1)
+  
+  it("Should find a users annual trips", function() {
      const annualTrips = 
      [{
     id: 1,
@@ -221,12 +150,11 @@ describe('Trips Repository Class ', function() {
     suggestedActivities: []
   }
     ]
-      tripRepo.filterById(1)
-    expect(tripRepo.showAnnualTrips('2021/10/06','2022/10/06')).to.eql(annualTrips)
-    expect(tripRepo.usersAnnualTrips).to.eql(annualTrips)
+     
+    expect(tripRepo.showAnnualTrips('2021/10/06','2022/10/06',1)).to.eql(annualTrips)
   })
   it("Should show past trip", function() {
-    tripRepo.filterById(1)
+   
     const pastTrips = [{
     id: 1,
     userID: 1,
@@ -278,12 +206,11 @@ describe('Trips Repository Class ', function() {
     suggestedActivities: []
     }]
   
-  tripRepo.filterById(1)
-  expect(tripRepo.showPastTrips("2022/10/06")).to.eql(pastTrips)
+  
+  expect(tripRepo.showPastTrips("2022/10/06",1)).to.eql(pastTrips)
   })
 
   it('Should show future trips',function() {
-    tripRepo.filterById(1)
     const nextTrip = [
   {
     id: 8,
@@ -296,12 +223,11 @@ describe('Trips Repository Class ', function() {
     suggestedActivities: []
   }
 ]
-    expect(tripRepo.showFutureTrips("2022/10/06")).to.eql(nextTrip)
+    expect(tripRepo.showFutureTrips("2022/10/06",1)).to.eql(nextTrip)
   })
   it('Should show the annual spending on trips',function() {
-    tripRepo.filterById(1)
-    tripRepo.showAnnualTrips('2021/10/06','2022/10/06')
-    expect(tripRepo.showAnnualSpent(destinations)).to.eql('1056.00')
+    
+    expect(tripRepo.showAnnualSpent(destinations,'2021/10/06','2022/10/06',1)).to.eql('1056.00')
   })
   it('Should filter pending trips', function() {
     const tripsPending = [{

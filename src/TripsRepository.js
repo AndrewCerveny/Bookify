@@ -31,9 +31,8 @@ class TripsRepository {
         return futureTrips
     }
     showAnnualSpent(destination,yrAgo,currentDate,id) {
-         const usersTrips = this.filterById(id)
-         const usersAnnualTrips = this.showAnnualTrips(yrAgo,currentDate,id)
-        const spentMoney = usersAnnualTrips.reduce((num,trip) => {
+         const userYearTrips = this.showAnnualTrips(yrAgo,currentDate,id)
+         const spentMoney = userYearTrips.reduce((num,trip) => {
             destination.forEach((destination) => {
             
                 if(destination.id === trip.destinationID) {
