@@ -22,7 +22,7 @@ describe('Traveler Repository Class', function () {
     })
     it('Should be able to find a traveler by ID number', function() {
        const currentUser = { id: 1, name: 'Ham Leadbeater', travelerType: 'relaxer' }
-        expect(travelerRepo.findById(1)).to.eql(currentUser)
+        expect(travelerRepo.filterById(1)).to.eql(currentUser)
     })
 
 })  
