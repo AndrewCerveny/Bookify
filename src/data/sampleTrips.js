@@ -1,7 +1,7 @@
 const tripsData =  [
 {
 "id": 1,
-"userId": 1,
+"userID": 1,
 "destinationID": 1,
 "travelers": 1,
 "date": "2022/09/16",
@@ -11,7 +11,7 @@ const tripsData =  [
 },
 {
 "id": 2,
-"userId": 1,
+"userID": 1,
 "destinationID": 2,
 "travelers": 5,
 "date": "2022/10/04",
@@ -21,7 +21,7 @@ const tripsData =  [
 },
 {
 "id": 3,
-"userId": 3,
+"userID": 3,
 "destinationID": 22,
 "travelers": 4,
 "date": "2022/05/22",
@@ -31,7 +31,7 @@ const tripsData =  [
 },
 {
 "id": 4,
-"userId": 43,
+"userID": 43,
 "destinationID": 14,
 "travelers": 2,
 "date": "2022/02/25",
@@ -41,7 +41,7 @@ const tripsData =  [
 },
 {
 "id": 5,
-"userId": 1,
+"userID": 1,
 "destinationID": 4,
 "travelers": 3,
 "date": "2021/10/07",
@@ -51,7 +51,7 @@ const tripsData =  [
 },
 {
 "id": 6,
-"userId": 1,
+"userID": 1,
 "destinationID": 35,
 "travelers": 3,
 "date": "2021/11/19",
@@ -61,7 +61,7 @@ const tripsData =  [
 },
 {
 "id": 7,
-"userId": 1,
+"userID": 1,
 "destinationID": 17,
 "travelers": 5,
 "date": "2022/5/28",
@@ -71,7 +71,7 @@ const tripsData =  [
 },
 {
 "id": 8,
-"userId": 1,
+"userID": 1,
 "destinationID": 4,
 "travelers": 6,
 "date": "2022/10/12",
@@ -81,7 +81,7 @@ const tripsData =  [
 },
 {
 "id": 9,
-"userId": 24,
+"userID": 24,
 "destinationID": 19,
 "travelers": 5,
 "date": "2022/12/19",
@@ -91,7 +91,7 @@ const tripsData =  [
 },
 {
 "id": 10,
-"userId": 9,
+"userID": 9,
 "destinationID": 50,
 "travelers": 6,
 "date": "2022/07/23",
@@ -101,7 +101,7 @@ const tripsData =  [
 },
 {
 "id": 11,
-"userId": 50,
+"userID": 50,
 "destinationID": 5,
 "travelers": 4,
 "date": "2022/10/14",
@@ -111,7 +111,7 @@ const tripsData =  [
 },
 {
 "id": 12,
-"userId": 33,
+"userID": 33,
 "destinationID": 33,
 "travelers": 6,
 "date": "2022/10/17",
@@ -121,7 +121,7 @@ const tripsData =  [
 },
 {
 "id": 13,
-"userId": 14,
+"userID": 14,
 "destinationID": 12,
 "travelers": 1,
 "date": "2022/02/12",
@@ -131,7 +131,7 @@ const tripsData =  [
 },
 {
 "id": 14,
-"userId": 19,
+"userID": 19,
 "destinationID": 35,
 "travelers": 1,
 "date": "2022/09/24",

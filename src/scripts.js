@@ -28,6 +28,7 @@ let currentUserId;
 
 // global Const Variables
 const todayDate = "2022/10/06";
+yearAgo = "2021/10/06";
 const travelerUrl = 'http://localhost:3001/api/v1/travelers';
 const tripsUrl = 'http://localhost:3001/api/v1/trips';
 const destinationsUrl = 'http://localhost:3001/api/v1/destinations';
@@ -71,10 +72,10 @@ const formSubBtn = document.querySelector('.book-input-sub');
 const estCostDisplay = document.querySelector('.estimated-cost-display');
 const firstName = document.querySelector(".welcome-person");
 const displayToday = document.querySelector(".today-Input");
-const displayAnnualSpent =  document.querySelector('annualSpentDisplay');
-const upcomingTripArea = document.querySelector('trip-info-card-upcom');
-const pendingTripArea = document.querySelector('trip-info-card-pend');
-const pastTripArea = document.querySelector('trip-info-card-past'); 
+const annualSpent =  document.querySelector('.annual-Spent');
+const upcomingTripArea = document.querySelector('.trip-info-card-upcom');
+const pendingTripArea = document.querySelector('.trip-info-card-pend');
+const pastTripArea = document.querySelector('.trip-info-card-past'); 
 
 
 
@@ -114,10 +115,14 @@ function loadPage() {
 	welcomeUser();
 	showTodayDate()
 	showYearSpending();
+    displayUpComingTrips();
+	displayPendingTrips();
+	displayPastTrips();
+
 }
 
 function createCurrentUser() {
-	const getUser = travelerRepo.findById(1);
+	const getUser = travelerRepo.findById(7);
 	currentUser = getUser;
 	currentUserId = getUser.id
 	tripsRepo.filterById(currentUserId)
@@ -145,11 +150,84 @@ function formatDate(date) {
 	return structuredDate
 }
 function showYearSpending() {
- console.log();
-
- 
+ const yrSpend = tripsRepo.showAnnualSpent(destinationRepo.allDestination,yearAgo,todayDate,currentUserId);
+ annualSpent.innerHTML = yrSpend
+ return yrSpend	
 }
 
+function displayUpComingTrips() {
+	const futureTrips = tripsRepo.showFutureTrips(todayDate,currentUserId)
+
+	upcomingTripArea.innerHTML = ''
+	if(futureTrips.length) {
+		futureTrips.forEach((trip) => {
+			 upcomingTripArea.innerHTML += `
+			 <section class="book-card"> 
+				<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
+				   <h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).location} </span> </h2>
+				  <h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
+				  <h2>Date of Trip: <span> ${trip.date} </span></h2>
+				  <h2> Duration of Trip: <span> ${trip.duration}</span></h2>
+				<h2> Status: <span> ${trip.status} </span></h2>
+			   </section>`
+		})
+	}else{
+		upcomingTripArea.innerHTML += `<p>There are no upcoming trips booked!</p>`
+	}
+ 
+
+}	
+
+function displayPendingTrips() {
+ const pendingTrips =  tripsRepo.showPending(currentUserId);
+	pendingTripArea.innerHTML += ''
+ 	
+	if(pendingTrips.length) {
+		pendingTrips.forEach((trip)=> {
+		pendingTripArea.innerHTML += `
+		<section class="book-card"> 
+			<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
+				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).location} </span> </h2>
+				<h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
+				<h2>Date of Trip: <span> ${trip.date} </span></h2>
+				<h2> Duration of Trip: <span> ${trip.duration}</span></h2>
+				<h2> Status: <span> ${trip.status} </span></h2>
+		</section>`
+	})
+ 	} else {
+	 pendingTripArea.innerHTML += `<p> No Pending Trips! </p>`
+ }
+  	
+
+}
+
+function displayPastTrips() {
+ const pastTrips = tripsRepo.showPastTrips(todayDate,currentUserId)
+ 
+ if(pastTrips.length) {
+	pastTrips.forEach((trip) => {
+		
+		pastTripArea.innerHTML += `
+		<section class="book-card"> 
+			<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
+				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).location} </span> </h2>
+				<h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
+				<h2>Date of Trip: <span> ${trip.date} </span></h2>
+				<h2> Duration of Trip: <span> ${trip.duration}</span></h2>
+				<h2> Status: <span> ${trip.status} </span></h2>
+		</section>`
+	})
+ 
+}else{
+pastTripArea.innerHTML += `<p> No Past Trips! </p>`
+
+ }
+}
+	
 
 
+
+
+
+// show
 
