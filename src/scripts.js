@@ -145,9 +145,9 @@ function formatDate(date) {
 	return structuredDate
 }
 function showYearSpending() {
- console.log('trip',tripsRepo.allTrips[0]);
+ console.log();
 
- console.log('CODE', tripsRepo.filterById(1))
+ 
 }
 
 
