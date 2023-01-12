@@ -53,5 +53,11 @@ class TripsRepository {
         const pendingTrips = this.currentUserTrips.filter(trip => trip.status === 'pending')
         return pendingTrips
     }
+    getCompanyId() {
+        const getHighest = this.allTrips.sort((a,b) => b.id - a.id)
+        const topId = getHighest[0].id
+        const givenNumber = topId + 1;
+        return givenNumber
+    }
 }
 export default TripsRepository; 

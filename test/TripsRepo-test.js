@@ -348,5 +348,8 @@ describe('Trips Repository Class ', function() {
     tripRepo.filterById(1)
     expect(tripRepo.showPending(1)).to.eql(tripsPending)
   })
+  it ('Should provide a new trip id for system', function() {
+    expect(tripRepo.getCompanyId()).to.eql(15)
+  })
 
 })
