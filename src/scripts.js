@@ -58,6 +58,35 @@ function gatherDatasets() {
 	})
 }
 
+// QuerySelectors
+const errorMessageForm =  document.querySelector('.error-message');
+const logOutBtn = document.querySelector('.logout');
+const inputBookDate = document.getElementById('userChosenDate');
+const destinationSelect = document.getElementById('chosenDestination');
+const durationInput = document.querySelector('.duration');
+const travelerInput =  document.querySelector('traveler-count');
+const formSubBtn = document.querySelector('.book-input-sub');
+const estCostDisplay = document.querySelector('.estimated-cost-display');
+const firstName = document.querySelector(".welcome-person");
+const displayToday = document.querySelector(".today-Input");
+const displayAnnualSpent =  document.querySelector('annualSpentDisplay');
+const upcomingTripArea = document.querySelector('trip-info-card-upcom');
+const pendingTripArea = document.querySelector('trip-info-card-pend');
+const pastTripArea = document.querySelector('trip-info-card-past'); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Event Listeners
@@ -76,5 +105,4 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
 	tripsRepo = new TripsRepository(allTrips);
 	allDestinations = dataSet3.map(place => new Destination(place));
 	destinationRepo = new DestinationRepository(allDestinations);
-	console.log('Boot',destinationRepo)
 }
