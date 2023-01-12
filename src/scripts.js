@@ -24,9 +24,10 @@ let allTrips;
 let tripsRepo;
 let yearAgo; 
 let currentUser;
+let currentUserId;
 
 // global Const Variables
-const TodayDate = "2022/10/06";
+const todayDate = "2022/10/06";
 const travelerUrl = 'http://localhost:3001/api/v1/travelers';
 const tripsUrl = 'http://localhost:3001/api/v1/trips';
 const destinationsUrl = 'http://localhost:3001/api/v1/destinations';
@@ -55,6 +56,7 @@ function gatherDatasets() {
 		allTrips =  data[1].trips
 		allDestinations = data[2].destinations
 		createInstances(allTravelers, allTrips,allDestinations)
+		loadPage()
 	})
 }
 
@@ -106,3 +108,48 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
 	allDestinations = dataSet3.map(place => new Destination(place));
 	destinationRepo = new DestinationRepository(allDestinations);
 }
+
+function loadPage() {
+	createCurrentUser();
+	welcomeUser();
+	showTodayDate()
+	showYearSpending();
+}
+
+function createCurrentUser() {
+	const getUser = travelerRepo.findById(1);
+	currentUser = getUser;
+	currentUserId = getUser.id
+	tripsRepo.filterById(currentUserId)
+	return getUser
+
+}
+
+function welcomeUser() {
+	const personName = currentUser.showFirstName()
+	firstName.innerHTML = personName
+	return personName
+}
+
+function showTodayDate() {
+const userToday = formatDate(todayDate);
+ displayToday.innerHTML = userToday
+ return userToday
+
+}
+
+function formatDate(date) {
+	const day = new Date(date);
+	const sentence = day.toDateString();
+	const structuredDate = sentence.split(" ").splice(0, 4).join(' ');
+	return structuredDate
+}
+function showYearSpending() {
+console.log('boot', tripsRepo.filterById(currentUserId))
+
+	
+}
+
+
+
+
