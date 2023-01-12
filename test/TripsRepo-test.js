@@ -5,11 +5,10 @@ import TripsRepository from '../src/TripsRepository';
 
 
 describe('Trips Repository Class ', function() {
-    let tripsData, tripRepo, destinations 
+    let tripRepo, destinations 
   beforeEach(() => {
-    tripsData = sampleTrips;
-    console.log('POW',sampleTrips)
-    tripRepo = new TripsRepository(tripsData);
+    
+    tripRepo = new TripsRepository(sampleTrips);
     destinations =[{
 "id": 1,
 "destination": "Lima, Peru",
@@ -58,8 +57,7 @@ describe('Trips Repository Class ', function() {
     expect(tripRepo).to.be.an.instanceOf(TripsRepository);
   })
   it("Should contain all trips", function() {
-    const allTripData = tripsData
-    expect(tripRepo.allTrips).to.eql(allTripData)
+    expect(tripRepo.allTrips).to.eql(sampleTrips)
   })
   it("Should default a current Users Trips to null", function() {
     expect(tripRepo.currentUserTrips).to.eql(null);
@@ -313,13 +311,71 @@ describe('Trips Repository Class ', function() {
   })
   it('Should show future trips',function() {
     tripRepo.filterById(1)
-    // console.log('currentUsers',tripRepo.currentUserTrips);
-    
-    expect(tripRepo.showFutureTrips("2022/10/06")).to.eql()
+    const nextTrip = [
+  {
+    id: 8,
+    userID: 1,
+    destinationID: 4,
+    travelers: 6,
+    date: '2022/10/12',
+    duration: 4,
+    status: 'approved',
+    suggestedActivities: []
+  }
+    ]
+    expect(tripRepo.showFutureTrips("2022/10/06")).to.eql(nextTrip)
   })
   it("Should get pending Trips", function() {
     tripRepo.filterById(1)
-    expect(tripRepo.showPendingTrips()).to.eql([])
+    const pendingTrips = [
+  {
+    id: 2,
+    userID: 1,
+    destinationID: 2,
+    travelers: 5,
+    date: '2022/10/04',
+    duration: 18,
+    status: 'pending',
+    suggestedActivities: []
+  },
+  {
+    id: 5,
+    userID: 1,
+    destinationID: 4,
+    travelers: 3,
+    date: '2021/10/07',
+    duration: 18,
+    status: 'pending',
+    suggestedActivities: []
+  },
+  {
+    id: 7,
+    userID: 1,
+    destinationID: 17,
+    travelers: 5,
+    date: '2022/5/28',
+    duration: 20,
+    status: 'pending',
+    suggestedActivities: []
+  },
+  {
+    id: 8,
+    userID: 1,
+    destinationID: 4,
+    travelers: 6,
+    date: '2022/10/12',
+    duration: 4,
+    status: 'pending',
+    suggestedActivities: []
+  }
+    ]
+
+    expect(tripRepo.showPendingTrips()).to.eql(pendingTrips)
+  })
+  it('Should show the annual spending on trips',function() {
+    tripRepo.filterById(1)
+    tripRepo.showAnnualTrips('2021/10/06','2022/10/06')
+    expect(tripRepo.showAnnualSpent(destinations)).to.eql('9768.00')
   })
 
 })

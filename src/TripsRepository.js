@@ -6,9 +6,9 @@ class TripsRepository {
 
     }
     filterById(id) {
-   const userTrips = this.allTrips.filter((trip) => trip.userID === id)
-   this.currentUserTrips = userTrips
-   return userTrips
+        const userTrips = this.allTrips.filter((trip) => trip.userID === id)
+        this.currentUserTrips = userTrips
+        return userTrips
    
     }
    
@@ -28,11 +28,31 @@ class TripsRepository {
     showFutureTrips(today) {
         const todayDate = new Date(today) 
         const futureTrips = this.currentUserTrips.filter((trip) => new Date(trip.date) > todayDate)
-        // console.log('INFUT', futureTrips)
+        return futureTrips
+         
     }
     showPendingTrips() {
-        const pendingTrips = this.currentUserTrips.filter(trip => trip.status === 'pending')   
-     
+       const pendingTrips = this.currentUserTrips.filter(trip => trip.status === 'pending')
+       return pendingTrips
+    }
+    showAnnualSpent(destination) {
+        const spentMoney = this.usersAnnualTrips.reduce((num,trip) => {
+        destination.forEach((destination) => {
+           
+            if(destination.id === trip.destinationID) {
+                const flights = trip.travelers * destination.estimatedFlightCostPerPerson
+                const stay = trip.duration * destination.estimatedLodgingCostPerDay
+                const estimate = flights + stay
+                num += estimate
+           }
+        })
+            return num
+        },0)
+        const fee = spentMoney * .1
+        const bill = spentMoney + fee
+        const dollars = bill.toFixed(2)
+        return dollars
+
     }
     
 }

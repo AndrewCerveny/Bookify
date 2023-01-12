@@ -140,4 +140,4 @@ const tripsData =  [
 "suggestedActivities": []
 }
 ]
-export default tripsData
+export default tripsData;
