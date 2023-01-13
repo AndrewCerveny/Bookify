@@ -65,7 +65,7 @@ describe('Trips Repository Class ', function() {
   const userTrips = [
   {
     id: 1,
-    userId: 1,
+    userID: 1,
     destinationID: 1,
     travelers: 1,
     date: '2022/09/16',
@@ -75,7 +75,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 2,
-    userId: 1,
+    userID: 1,
     destinationID: 2,
     travelers: 5,
     date: '2022/10/04',
@@ -85,7 +85,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 5,
-    userId: 1,
+    userID: 1,
     destinationID: 4,
     travelers: 3,
     date: '2021/10/07',
@@ -95,7 +95,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 6,
-    userId: 1,
+    userID: 1,
     destinationID: 35,
     travelers: 3,
     date: '2021/11/19',
@@ -105,7 +105,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 7,
-    userId: 1,
+    userID: 1,
     destinationID: 17,
     travelers: 5,
     date: '2022/5/28',
@@ -115,7 +115,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 8,
-    userId: 1,
+    userID: 1,
     destinationID: 4,
     travelers: 6,
     date: '2022/10/12',
@@ -131,7 +131,7 @@ describe('Trips Repository Class ', function() {
      const annualTrips = 
      [{
     id: 1,
-    userId: 1,
+    userID: 1,
     destinationID: 1,
     travelers: 1,
     date: '2022/09/16',
@@ -141,7 +141,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 6,
-    userId: 1,
+    userID: 1,
     destinationID: 35,
     travelers: 3,
     date: '2021/11/19',
@@ -157,7 +157,7 @@ describe('Trips Repository Class ', function() {
    
     const pastTrips = [{
     id: 1,
-    userId: 1,
+    userID: 1,
     destinationID: 1,
     travelers: 1,
     date: '2022/09/16',
@@ -167,7 +167,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 2,
-    userId: 1,
+    userID: 1,
     destinationID: 2,
     travelers: 5,
     date: '2022/10/04',
@@ -177,7 +177,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 5,
-    userId: 1,
+    userID: 1,
     destinationID: 4,
     travelers: 3,
     date: '2021/10/07',
@@ -187,7 +187,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 6,
-    userId: 1,
+    userID: 1,
     destinationID: 35,
     travelers: 3,
     date: '2021/11/19',
@@ -197,7 +197,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 7,
-    userId: 1,
+    userID: 1,
     destinationID: 17,
     travelers: 5,
     date: '2022/5/28',
@@ -214,7 +214,7 @@ describe('Trips Repository Class ', function() {
     const nextTrip = [
   {
     id: 8,
-    userId: 1,
+    userID: 1,
     destinationID: 4,
     travelers: 6,
     date: '2022/10/12',
@@ -232,7 +232,7 @@ describe('Trips Repository Class ', function() {
   it('Should filter pending trips', function() {
     const tripsPending = [{
     id: 2,
-    userId: 1,
+    userID: 1,
     destinationID: 2,
     travelers: 5,
     date: '2022/10/04',
@@ -242,7 +242,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 5,
-    userId: 1,
+    userID: 1,
     destinationID: 4,
     travelers: 3,
     date: '2021/10/07',
@@ -252,7 +252,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 7,
-    userId: 1,
+    userID: 1,
     destinationID: 17,
     travelers: 5,
     date: '2022/5/28',
@@ -262,7 +262,7 @@ describe('Trips Repository Class ', function() {
   },
   {
     id: 8,
-    userId: 1,
+    userID: 1,
     destinationID: 4,
     travelers: 6,
     date: '2022/10/12',

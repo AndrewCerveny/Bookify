@@ -22,7 +22,7 @@ describe('Trips Class', function() {
     expect(trip1.id).to.eql(1)
   })
   it("Should have a userID", function() {
-    expect(trip1.userId).to.eql(1)
+    expect(trip1.userID).to.eql(1)
   })
   it("Should have a destinationID", function() {
     expect(trip1.destinationID).to.equal(1)

@@ -104,8 +104,10 @@ window.addEventListener('load', gatherDatasets)
 function createInstances(dataSet1, dataSet2, dataSet3) {
 	allTravelers = dataSet1.map(person => new Traveler(person));
 	travelerRepo = new TravelerRepository(allTravelers);
+	console.log('shirt',travelerRepo.allTravelData[0]);
 	allTrips = dataSet2.map(trip => new Trip(trip));
 	tripsRepo = new TripsRepository(allTrips);
+	console.log(tripsRepo.allTrips[0]);
 	allDestinations = dataSet3.map(place => new Destination(place));
 	destinationRepo = new DestinationRepository(allDestinations);
 }
@@ -123,7 +125,7 @@ function loadPage() {
 }
 
 function createCurrentUser() {
-	const getUser = travelerRepo.findById(7);
+	const getUser = travelerRepo.findById(25);
 	currentUser = getUser;
 	currentUserId = getUser.id
 	tripsRepo.filterById(currentUserId)
@@ -181,10 +183,11 @@ function displayUpComingTrips() {
 
 function displayPendingTrips() {
  const pendingTrips =  tripsRepo.showPending(currentUserId);
+ console.log('socks',pendingTrips);
 	pendingTripArea.innerHTML += ''
  	
 	if(pendingTrips.length) {
-		pendingTrips.forEach((trip)=> {
+		pendingTrips.forEach((trip) => {
 		pendingTripArea.innerHTML += `
 		<section class="book-card"> 
 			<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
@@ -236,12 +239,7 @@ function displayDestinations() {
 	destinationSelect.innerHTML += ``
 	
 	const allDestinations = destinationRepo.getAllDest()
-	console.log('socks',allDestinations);
-	allDestinations.forEach((place,index) => {
-		destinationSelect.innerHTML += `
-		<option value="${index}">${place} </option>
-		`
-	})
+	
 
 	
 }
