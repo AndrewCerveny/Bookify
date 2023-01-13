@@ -30,7 +30,12 @@ class DestinationRepository {
         return billFormat
     }
     getAllDest() {
-       const allNames = this.allDestinations.map(place => place.destination)
+       const allNames = this.allDestinations.map(place => { 
+        const locationFacts = {}
+        locationFacts.id = place.id
+        locationFacts.destination = place.destination
+        return locationFacts
+       })
        return allNames
     }
     getDestImgInfo(num,trait) {

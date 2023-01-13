@@ -20,13 +20,14 @@ describe('Destination Class', function() {
     expect(destination1.id).to.eql(1)
   })
   it("Should have a destination name" ,function() {
-    expect(destination1.location).to.eql('Lima, Peru')
+   
+    expect(destination1.destination).to.eql('Lima, Peru')
   })
   it("Should have an estimated cost for lodging", function() {
-    expect(destination1.estCostPerLodge).to.eql(70)
+    expect(destination1.estimatedLodgingCostPerDay).to.eql(70)
   })
   it("Should have an estimated cost for Flights per person",function(){
-    expect(destination1.estFlightCostPerPerson).to.eql(400)
+    expect(destination1.estimatedFlightCostPerPerson).to.eql(400)
   })
   it("Should hold an image", function() {
 const imageUrl = 'https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80'

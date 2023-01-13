@@ -5,7 +5,7 @@ class TripsRepository {
 
     }
     filterById(id) {
-        const userTrips = this.allTrips.filter((trip) => trip.userID === id)
+        const userTrips = this.allTrips.filter((trip) =>  trip.userID === id)
         return userTrips
    
     }

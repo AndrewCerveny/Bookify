@@ -174,12 +174,15 @@ article {
 }
 .book-card {
   border: 1px solid black;
-  height: 17rem;
+  height: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+.book-card >img {
+  height:8rem;
+  
+}
 .hidden {
   display: none; 
 }

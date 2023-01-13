@@ -5,11 +5,11 @@ import Trip from '../src/Trips';
 
 
 describe('Trips Class', function() {
-    let tripsData, currentTrip,trip1
+    let tripsData, trip1
   beforeEach(() => {
     tripsData = sampleTrips
-    currentTrip = sampleTrips[0]
-    trip1 = new Trip(currentTrip)
+    
+    trip1 = new Trip(tripsData[0])
   })
   it("Should be a function",function() {
     expect(Trip).to.be.a("Function")
@@ -17,14 +17,15 @@ describe('Trips Class', function() {
   it("Should make an instance", function() {
     expect(trip1).to.be.an.instanceOf(Trip)
   })
-  it("Should have a tripId" , function() {
-    expect(trip1.tripId).to.eql(1)
+  it("Should have a trip Id" , function() {
+    
+    expect(trip1.id).to.eql(1)
   })
   it("Should have a userID", function() {
-    expect(trip1.userId).to.eql(1)
+    expect(trip1.userID).to.eql(1)
   })
   it("Should have a destinationID", function() {
-    expect(trip1.destinationId).to.equal(1)
+    expect(trip1.destinationID).to.equal(1)
   })
   it("Should hold amount of travelers for trip", function() {
     expect(trip1.travelers).to.eql(1)
