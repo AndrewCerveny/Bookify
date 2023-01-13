@@ -11,9 +11,13 @@
   <title> Bookify </title>
 </head>
 <header>
-  <nav>
-    <div>  
+  <nav >
+    <div class="logout-btn-wrapper">  
       <button class="logout" type="submit"> Logout </button>
+    </div>
+    <div class="api-data-err-display">
+      <h2 class="post-Fail hidden"> Sorry, failed to transfer information. Please, try again later. 🛠️ </h2>
+      <h2 class ="fetch-Fail hidden"> Sorry, failed to retrieve information. Please, try again later. 🛠️ </h2>
     </div>
   </nav>
 </header>
@@ -30,8 +34,8 @@
       <div class="form-intro-wrapper"> 
         <h2 class="form-intro"> Want to Book a trip? </h2>
       </div>
-      <div class="error-wrapper">
-        <h2 class="error-message"> Error message handler  </h2>
+      <div class="error-wrapper hidden">
+        <h2 class="error-message "> Error message handler  </h2>
       </div>
     <form>
       <fieldset class="Booking Options" id="Booking-form">
@@ -64,6 +68,9 @@
       </fieldset>
     </form>
     <section class="estimated-cost-display">
+      <div class="est-cost-wrapper"> 
+        <button class="show-est-cost"> See Estimated Cost </button>
+      </div>
       <div class=" dollar-styler"> 
       <h2> Estimated Cost: </h2>
       <h2 class="show-cost-display"> $1,300 dollars </h2>
@@ -86,7 +93,7 @@
   <section class="trips-display">
     <article class="upcoming-trips-display">
       <h2> Upcoming trips </h2>
-      <section class="trip-info-card-upcom"> 
+      <section class="trip-info-card-upcoming"> 
         <section class="book-card">
           <img src="" alt="destinationImg">
           <h2>Destination name: <span class="upcoming-destin"> name of destination </span></h2>

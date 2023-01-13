@@ -15,11 +15,12 @@
 /* semantic framing */
 
 nav {
-  display: flex;
-  justify-content: flex-end;
-  width: 100vw;
-  border:2px solid black;
-  height: 4rem; 
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    border: 2px solid black;
+    height: 5rem;
+    flex-direction: row;
 }
 aside {
 display: flex;
@@ -59,6 +60,11 @@ article {
   height: 13rem;
 }
 
+/* navBarArea */
+.logout-btn-wrapper > .logout {
+  height:100%;
+  width:7rem;
+}
 
 
 /* main Body Area */
@@ -154,15 +160,28 @@ article {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%; 
+}
+ .est-cost-wrapper > .show-est-cost {
+width: 9rem;
+height: 2rem;
+}
+.est-cost-wrapper {
+  border: 1px solid black;
+  width: 12rem;
+  display: flex;
+  justify-content: center;
+  height: 3rem;
 }
 .dollar-styler {
   display: flex;
   width: 100%;
   justify-content: space-around;
 }
+ /* card displays */
 .trip-info-card-past,
 .trip-info-card-pend,
-.trip-info-card-upcom {
+.trip-info-card-upcoming {
   border: 2px solid black;
   width: 80%;
   display: flex;

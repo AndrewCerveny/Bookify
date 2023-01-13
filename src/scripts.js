@@ -49,7 +49,7 @@ function snagApiData(url) {
 			return response.json()
 			}
 		})
-		.catch((err) => console.log(err.message))
+		.catch((err) => showAreaMessage(fetchErrDisplay))
 };
 
 function gatherDatasets() {
@@ -69,6 +69,7 @@ function gatherDatasets() {
 
 // QuerySelectors
 const errorMessageForm =  document.querySelector('.error-message');
+const errorMessageWrapper =  document.querySelector('.error-wrapper');
 const logOutBtn = document.querySelector('.logout');
 const inputBookDate = document.getElementById('userChosenDate');
 const destinationSelect = document.getElementById('chosenDestination');
@@ -79,9 +80,12 @@ const estCostDisplay = document.querySelector('.show-cost-display');
 const firstName = document.querySelector(".welcome-person");
 const displayToday = document.querySelector(".today-Input");
 const annualSpent =  document.querySelector('.annual-Spent');
-const upcomingTripArea = document.querySelector('.trip-info-card-upcom');
+const upcomingTripArea = document.querySelector('.trip-info-card-upcoming');
 const pendingTripArea = document.querySelector('.trip-info-card-pend');
 const pastTripArea = document.querySelector('.trip-info-card-past'); 
+const postErrDisplay =  document.querySelector('.post-Fail');
+const fetchErrDisplay = document.querySelector('.fetch-Fail');
+const estimatedCostBtn = document.querySelector('.show-est-cost');
 
 
 
@@ -101,10 +105,13 @@ const pastTripArea = document.querySelector('.trip-info-card-past');
 // Event Listeners
 window.addEventListener('load', gatherDatasets)
  formSubBtn.addEventListener('click',function(e) {
-	
-	createPostTrip(e);
-	displayEstimatedCost()
+ createPostTrip(e);
  })
+ estimatedCostBtn.addEventListener('click', function(e){
+ displayEstimatedCost(e)
+ } )
+
+
 
 
 
@@ -259,19 +266,38 @@ function displayDestinations() {
 function createPostTrip(e) {
 	e.preventDefault()
 userChosenDate = inputBookDate.value.replaceAll("-","/");
-const postId = tripsRepo.getCompanyId();
-destinationId =  destinationSelect.value;
-daysTraveled = durationInput.value; 
-peopleTraveling = travelerInput.value; 
-const postTrip = {id:postId, userID:currentUserId, destinationID:Number(destinationId), travelers:Number(peopleTraveling), date:userChosenDate, duration: Number(daysTraveled), status:"pending", suggestedActivities:[]}
-const endPoint = 'trips';
+	if(!checkBookingDate(userChosenDate)) {
+		const postId = tripsRepo.getCompanyId();
+		destinationId =  Number(destinationSelect.value);
+		daysTraveled = Number(durationInput.value); 
+		peopleTraveling = Number(travelerInput.value); 
+		const postTrip = {
+		id: postId, 
+		userID: currentUserId, 
+		destinationID: destinationId, 
+		travelers: peopleTraveling, 
+		date: userChosenDate, 
+		duration: daysTraveled, 
+		status:"pending", 
+		suggestedActivities:[]
+		}
+		const endPoint = 'trips';
+	
+	triggerPost(endPoint,postTrip);
 
-triggerPost(endPoint,postTrip);
+} else {
+ showAreaMessage(errorMessageWrapper)
+ errorMessageForm.innerHTML = 'Date already booked please try again!'
+}
+
 
 }
 
-function displayEstimatedCost() {
-	estCostDisplay.innerHTML = ''
+function displayEstimatedCost(e) {
+	e.preventDefault()
+	destinationId = Number(destinationSelect.value);
+	daysTraveled = Number(durationInput.value); 
+	peopleTraveling = Number(travelerInput.value); 
 	const matchedDestination = destinationRepo.findLocationById(Number(destinationId))
 	estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling)}`	
 }
@@ -294,7 +320,17 @@ function triggerPost(endPoint,newPostedTrip) {
 		.then(data => {
 			gatherDatasets()
 		})
-		.catch((err) => console.log(err.message))
+		.catch((err) => showAreaMessage(postErrDisplay))
 
 	
 }
+
+function showAreaMessage(area) {
+	area.classList.remove("hidden");
+}
+function checkBookingDate(datePicked) {
+	const usersTrips = tripsRepo.filterById(currentUserId);
+	const match = usersTrips.find((trip) => trip.date === datePicked)	
+	return match
+}
+
