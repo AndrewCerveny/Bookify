@@ -15,10 +15,10 @@ describe('Destination Repository Class', function() {
   it("Should make an instance of Destination Repository", function() {
     expect(destinationRepo).to.be.an.instanceOf(DestinationRepository);
   })
-  it("Should hold on to all the destination data", function() {
+  it("Should hold on to all the location data", function() {
     expect(destinationRepo.allDestinations).to.eql(allDestinations)
   })
-  it("Should default a userSelected destination to null", function(){
+  it("Should default a userSelected Destination to null", function(){
     expect(destinationRepo.userSelectedDestination).to.eql(null)
   })
   it("Should store a user selected Destination by ID", function(){
@@ -33,7 +33,7 @@ describe('Destination Repository Class', function() {
     destinationRepo.findLocationById(1)
     expect(destinationRepo.userSelectedDestination).to.eql(selectedPlace)
   })
-  it("Should tell the user to pick a destination when there is no match", function() {
+  it("Should tell the user to pick a location when there is no match", function() {
     expect(destinationRepo.findLocationById(null)).to.eql('Please, pick a destination!')
   })
   it("Should calculate estimated cost for lodging per day", function() {
@@ -50,15 +50,16 @@ describe('Destination Repository Class', function() {
   })
   it("Should return all of the location names", function(){
     const destinationNames = [
-    'Lima, Peru',
-    'Stockholm, Sweden',
-    'Sydney, Austrailia',
-    'Cartagena, Colombia',
-    'Madrid, Spain',
-    'Jakarta, Indonesia']
+    { id: 1, destination: 'Lima, Peru' },
+    { id: 2, destination: 'Stockholm, Sweden' },
+    { id: 3, destination: 'Sydney, Austrailia' },
+    { id: 4, destination: 'Cartagena, Colombia' },
+    { id: 5, destination: 'Madrid, Spain' },
+    { id: 6, destination: 'Jakarta, Indonesia' }
+    ]
     expect(destinationRepo.getAllDest()).to.eql(destinationNames)
   })
-  it("Should be able to return a destination img by id reference", function() {
+  it("Should be able to return a location img by id reference", function() {
     
     const matchedImage = 'https://images.unsplash.com/photo-1558029697-a7ed1a4b94c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
     const matchedAlt = 'boats at a dock during the day time'

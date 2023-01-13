@@ -118,7 +118,8 @@ function loadPage() {
     displayUpComingTrips();
 	displayPendingTrips();
 	displayPastTrips();
-
+	restrictDateRange();
+	displayDestinations();
 }
 
 function createCurrentUser() {
@@ -164,7 +165,7 @@ function displayUpComingTrips() {
 			 upcomingTripArea.innerHTML += `
 			 <section class="book-card"> 
 				<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
-				   <h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).location} </span> </h2>
+				   <h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
 				  <h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
 				  <h2>Date of Trip: <span> ${trip.date} </span></h2>
 				  <h2> Duration of Trip: <span> ${trip.duration}</span></h2>
@@ -187,7 +188,7 @@ function displayPendingTrips() {
 		pendingTripArea.innerHTML += `
 		<section class="book-card"> 
 			<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
-				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).location} </span> </h2>
+				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
 				<h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
 				<h2>Date of Trip: <span> ${trip.date} </span></h2>
 				<h2> Duration of Trip: <span> ${trip.duration}</span></h2>
@@ -210,7 +211,7 @@ function displayPastTrips() {
 		pastTripArea.innerHTML += `
 		<section class="book-card"> 
 			<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
-				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).location} </span> </h2>
+				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
 				<h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
 				<h2>Date of Trip: <span> ${trip.date} </span></h2>
 				<h2> Duration of Trip: <span> ${trip.duration}</span></h2>
@@ -223,11 +224,26 @@ pastTripArea.innerHTML += `<p> No Past Trips! </p>`
 
  }
 }
+function restrictDateRange() {
+	const calendarMin = todayDate.replaceAll("/","-")
+	const calendarMax = '2023-10-06'
+
+ inputBookDate.setAttribute("min",`${calendarMin}`)
+ inputBookDate.setAttribute("max",`${calendarMax}`)
 	
+}
+function displayDestinations() {
+	destinationSelect.innerHTML += ``
+	
+	const allDestinations = destinationRepo.getAllDest()
+	console.log('socks',allDestinations);
+	allDestinations.forEach((place,index) => {
+		destinationSelect.innerHTML += `
+		<option value="${index}">${place} </option>
+		`
+	})
 
+	
+}
 
-
-
-
-// show
 
