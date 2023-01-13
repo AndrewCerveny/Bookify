@@ -25,6 +25,12 @@ let tripsRepo;
 let yearAgo; 
 let currentUser;
 let currentUserId;
+let userChosenDate;
+let destinationId
+let daysTraveled;
+let peopleTraveling;  
+
+ 
 
 // global Const Variables
 const todayDate = "2022/10/06";
@@ -67,9 +73,9 @@ const logOutBtn = document.querySelector('.logout');
 const inputBookDate = document.getElementById('userChosenDate');
 const destinationSelect = document.getElementById('chosenDestination');
 const durationInput = document.querySelector('.duration');
-const travelerInput =  document.querySelector('traveler-count');
+const travelerInput =  document.querySelector('.traveler-count');
 const formSubBtn = document.querySelector('.book-input-sub');
-const estCostDisplay = document.querySelector('.estimated-cost-display');
+const estCostDisplay = document.querySelector('.show-cost-display');
 const firstName = document.querySelector(".welcome-person");
 const displayToday = document.querySelector(".today-Input");
 const annualSpent =  document.querySelector('.annual-Spent');
@@ -94,6 +100,11 @@ const pastTripArea = document.querySelector('.trip-info-card-past');
 
 // Event Listeners
 window.addEventListener('load', gatherDatasets)
+ formSubBtn.addEventListener('click',function(e) {
+	
+	createPostTrip(e);
+	displayEstimatedCost()
+ })
 
 
 
@@ -104,10 +115,8 @@ window.addEventListener('load', gatherDatasets)
 function createInstances(dataSet1, dataSet2, dataSet3) {
 	allTravelers = dataSet1.map(person => new Traveler(person));
 	travelerRepo = new TravelerRepository(allTravelers);
-	console.log('shirt',travelerRepo.allTravelData[0]);
 	allTrips = dataSet2.map(trip => new Trip(trip));
 	tripsRepo = new TripsRepository(allTrips);
-	console.log(tripsRepo.allTrips[0]);
 	allDestinations = dataSet3.map(place => new Destination(place));
 	destinationRepo = new DestinationRepository(allDestinations);
 }
@@ -183,7 +192,6 @@ function displayUpComingTrips() {
 
 function displayPendingTrips() {
  const pendingTrips =  tripsRepo.showPending(currentUserId);
- console.log('socks',pendingTrips);
 	pendingTripArea.innerHTML += ''
  	
 	if(pendingTrips.length) {
@@ -239,9 +247,54 @@ function displayDestinations() {
 	destinationSelect.innerHTML += ``
 	
 	const allDestinations = destinationRepo.getAllDest()
-	
+	 
+	allDestinations.forEach((destination)=> {
+	destinationSelect.innerHTML += `
+	<option id="${destination.id}" value=${destination.id}> ${destination.destination}</option>`
+})
 
 	
 }
 
+function createPostTrip(e) {
+	e.preventDefault()
+userChosenDate = inputBookDate.value.replaceAll("-","/");
+const postId = tripsRepo.getCompanyId();
+destinationId =  destinationSelect.value;
+daysTraveled = durationInput.value; 
+peopleTraveling = travelerInput.value; 
+const postTrip = {id:postId, userID:currentUserId, destinationID:Number(destinationId), travelers:Number(peopleTraveling), date:userChosenDate, duration: Number(daysTraveled), status:"pending", suggestedActivities:[]}
+const endPoint = 'trips';
 
+triggerPost(endPoint,postTrip);
+
+}
+
+function displayEstimatedCost() {
+	estCostDisplay.innerHTML = ''
+	const matchedDestination = destinationRepo.findLocationById(Number(destinationId))
+	estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling)}`	
+}
+
+function triggerPost(endPoint,newPostedTrip) {
+	fetch(`http://localhost:3001/api/v1/${endPoint}`,{
+		method:'POST',
+		body: JSON.stringify(newPostedTrip),
+		headers:{
+			'Content-Type':'application/json'
+		}
+	})
+		.then((response) => {
+			if(!response.ok) {
+				throw new Error('Whoops')
+			}else{
+				return response.json()
+			}
+		})
+		.then(data => {
+			gatherDatasets()
+		})
+		.catch((err) => console.log(err.message))
+
+	
+}
