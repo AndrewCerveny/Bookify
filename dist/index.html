@@ -43,13 +43,13 @@
         <legend class="hidden"> Place Your booking requirements here </legend>
           <section class="date-wrapper">
             <h2> Choose a Date </h2>
-              <label for="userChosenDate " class="hidden"> Calendar Input </label>
-              <input class = input-booking-date id="userChosenDate" type ="date" placeholder="">
+              <label for="userChosenDate" class="hidden"> Calendar Input </label>
+              <input class = input-booking-date name="userChosenDate"id="userChosenDate" type ="date" placeholder="">
           </section>
           <section class=" destination-form-wrapper">
             <h2> Choose a Destination </h2>
               <label for="chosenDestination" class="hidden"> Destination Input </label>
-              <select class=input-destination id="chosenDestination" type="text" >
+              <select class=input-destination name="chosenDestination"id="chosenDestination" type="text" >
                 <option value="" > choose a destination </option>
                <!-- append destination names -->
             </select> 
@@ -57,12 +57,12 @@
           <section class="duration-trip-wrapper">
             <h2> Duration of trip </h2>
               <label for="duration-length" class="hidden"> Duration length </label>
-              <input class="duration" id="duration-length" type="number" placeholder="Duration" min="1">
+              <input class="duration"name="duration-length" id="duration-length" type="number" placeholder="Duration" min="1">
           </section>
           <section class="traveling-people-wrapper">
             <h2> How many Traveling? </h2>
-              <label for="traver-quantity" class="hidden"> Duration length </label>
-              <input class="traveler-count" id="traver-quantity" type="number" placeholder="Travelers" min="1">
+              <label for="traveler-quantity" class="hidden"> Duration length </label>
+              <input class="traveler-count" name="traveler-quantity" id="traveler-quantity" type="number" placeholder="Travelers" min="1">
           </section>
           <div class=" button-styler"> 
             <button class="book-input-sub" type="submit"> Process Booking 🛒 </button>
