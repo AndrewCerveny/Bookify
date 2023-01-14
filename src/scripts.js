@@ -180,7 +180,7 @@ function displayUpComingTrips() {
 			 upcomingTripArea.innerHTML += `
 			 <section class="book-card"> 
 				<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
-				   <h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
+				   <h2>Destination: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
 				  <h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
 				  <h2>Date of Trip: <span> ${trip.date} </span></h2>
 				  <h2> Duration of Trip: <span> ${trip.duration}</span></h2>
@@ -203,7 +203,7 @@ function displayPendingTrips() {
 		pendingTripArea.innerHTML += `
 		<section class="book-card"> 
 			<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
-				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
+				<h2>Destination: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
 				<h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
 				<h2>Date of Trip: <span> ${trip.date} </span></h2>
 				<h2> Duration of Trip: <span> ${trip.duration}</span></h2>
@@ -226,7 +226,7 @@ function displayPastTrips() {
 		pastTripArea.innerHTML += `
 		<section class="book-card"> 
 			<img src="${destinationRepo.getDestImgInfo(trip.destinationID,'image')}." alt=${destinationRepo.getDestImgInfo(trip.destinationID,'alt')}>
-				<h2>Destination name: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
+				<h2>Destination: <span> ${destinationRepo.findLocationById(trip.destinationID).destination} </span> </h2>
 				<h2>How many Travelers: <span> ${trip.travelers}</span> </h2>
 				<h2>Date of Trip: <span> ${trip.date} </span></h2>
 				<h2> Duration of Trip: <span> ${trip.duration}</span></h2>
