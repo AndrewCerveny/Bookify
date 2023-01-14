@@ -1,29 +1,29 @@
 class DestinationRepository {
     constructor(destinationData) {
         this.allDestinations = destinationData;
-        this.userSelectedDestination = null;
+        
     }
     findLocationById(destinationID) {
       if(destinationID) {
           const selectedDest = this.allDestinations.find((place) => place.id === destinationID)
-        return this.userSelectedDestination = selectedDest
+          return selectedDest
         } else{
         return 'Please, pick a destination!'
       }
     }
-    estCostPerLodge(num) {
-       const totalLodgeCost = this.userSelectedDestination.estimatedLodgingCostPerDay * num
+    estCostPerLodge(num,id) {
+        const matchedLocation = this.findLocationById(id)
+       const totalLodgeCost = matchedLocation.estimatedLodgingCostPerDay * num
        return totalLodgeCost  
     }
-    estCostPerTraveler(num) {
-    
-        const flightCost = this.userSelectedDestination.estimatedFlightCostPerPerson * num
+    estCostPerTraveler(num,id) {
+        const matchedLocation = this.findLocationById(id)
+        const flightCost = matchedLocation.estimatedFlightCostPerPerson * num
         return flightCost
     }
-    getTotalCost(duration,travelers) {
-        console.log('PowerSuit',this.userSelectedDestination);
-       const lodgingCost = this.estCostPerLodge(duration)
-        const flightCost = this.estCostPerTraveler(travelers)
+    getTotalCost(duration,travelers,id) {
+       const lodgingCost = this.estCostPerLodge(duration,id)
+        const flightCost = this.estCostPerTraveler(travelers,id)
         const total = lodgingCost + flightCost
         const fee = total * .1 
         const est = total + fee 

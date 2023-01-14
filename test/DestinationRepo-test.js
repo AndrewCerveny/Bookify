@@ -18,9 +18,6 @@ describe('Destination Repository Class', function() {
   it("Should hold on to all the location data", function() {
     expect(destinationRepo.allDestinations).to.eql(allDestinations)
   })
-  it("Should default a userSelected Destination to null", function(){
-    expect(destinationRepo.userSelectedDestination).to.eql(null)
-  })
   it("Should store a user selected Destination by ID", function(){
     const selectedPlace =  {
   id: 1,
@@ -30,23 +27,20 @@ describe('Destination Repository Class', function() {
   image: 'https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80',
   alt: 'overview of city buildings with a clear sky'
     } 
-    destinationRepo.findLocationById(1)
-    expect(destinationRepo.userSelectedDestination).to.eql(selectedPlace)
+    expect(destinationRepo.findLocationById(1)).to.eql(selectedPlace)
   })
   it("Should tell the user to pick a location when there is no match", function() {
     expect(destinationRepo.findLocationById(null)).to.eql('Please, pick a destination!')
   })
   it("Should calculate estimated cost for lodging per day", function() {
     destinationRepo.findLocationById(1)
-    expect(destinationRepo.estCostPerLodge(4)).to.eql(280)
+    expect(destinationRepo.estCostPerLodge(4,1 )).to.eql(280)
   })
   it("Should calculate estimated cost per traveler" , function() {
-    destinationRepo.findLocationById(1)
-    expect(destinationRepo.estCostPerTraveler(6)).to.eql(2400)
+    expect(destinationRepo.estCostPerTraveler(6,1)).to.eql(2400)
   })
   it("Should give a total cost include a 10% travel fee", function() {
-    destinationRepo.findLocationById(1)
-    expect(destinationRepo.getTotalCost(6,3)).to.eql('1782.00')
+    expect(destinationRepo.getTotalCost(6,3,1)).to.eql('1782.00')
   })
   it("Should return all of the location names", function(){
     const destinationNames = [
