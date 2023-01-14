@@ -248,7 +248,6 @@ function restrictDateRange() {
 }
 function displayDestinations() {
 	destinationSelect.innerHTML += ``
-	
 	const allDestinations = destinationRepo.getAllDest()
 	 
 	allDestinations.forEach((destination)=> {
@@ -260,47 +259,54 @@ function displayDestinations() {
 }
 
 function createPostTrip(e) {
-	e.preventDefault()
-userChosenDate = inputBookDate.value.replaceAll("-","/");
-		const postId = tripsRepo.getCompanyId();
-		destinationId =  Number(destinationSelect.value);
-		daysTraveled = Number(durationInput.value); 
-		peopleTraveling = Number(travelerInput.value); 
-		const postTrip = {
-		id: postId, 
-		userID: currentUserId, 
-		destinationID: destinationId, 
-		travelers: peopleTraveling, 
-		date: userChosenDate, 
-		duration: daysTraveled, 
-		status:"pending", 
-		suggestedActivities:[]
-		}
-		const endPoint = 'trips';
-	triggerPost(endPoint,postTrip);
+	userChosenDate = inputBookDate.value.replaceAll("-","/");
+	const validate = checkBookingDate(userChosenDate)	
+	if(validate) {
+		e.preventDefault()
+			const postId = tripsRepo.getCompanyId();
+			destinationId =  Number(destinationSelect.value);
+			daysTraveled = Number(durationInput.value); 
+			peopleTraveling = Number(travelerInput.value); 
+			const postTrip = {
+			id: postId, 
+			userID: currentUserId, 
+			destinationID: destinationId, 
+			travelers: peopleTraveling, 
+			date: userChosenDate, 
+			duration: daysTraveled, 
+			status:"pending", 
+			suggestedActivities:[]
+			}
+			const endPoint = 'trips';
+		triggerPost(endPoint,postTrip);
+
+	}else {
+		showAreaMessage(messageWrapper)
+		messageForm.innerHTML = 'Please pick another date, date is not available!'
+	}
 
 }
 
 function displayEstimatedCost(e) {
 	e.preventDefault()
 	makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput);
-
 	destinationId = Number(destinationSelect.value);
 	daysTraveled = Number(durationInput.value); 
 	peopleTraveling = Number(travelerInput.value); 
-	userChosenDate = inputBookDate.value.replaceAll("-","/");
+	userChosenDate = inputBookDate.value.replaceAll("-","/")
+	const provedChosen = Number(userChosenDate.split("/").join(""))
 
-	if(validInputs(destinationSelect.value,durationInput.value,travelerInput.value,userChosenDate)) {
-		 destinationRepo.findLocationById(Number(destinationId))
-		console.log('BLOUSE',destinationRepo.getTotalCost(daysTraveled,peopleTraveling));
-		estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling)}`	
-		disableButton(estimatedCostBtn)
-		enableButton(formSubBtn)	
+	if(destinationId > 0 && daysTraveled > 0  && peopleTraveling > 0 && provedChosen > 0 ) {
+		disableButton(estimatedCostBtn)	
+		estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling,destinationId)}`	
+			disableButton(estimatedCostBtn);
+			enableButton(formSubBtn);
+		
 	}else {
-		showAreaMessage(messageWrapper)
-		inputMessageWarning(destinationSelect.value, durationInput.value,travelerInput.value)
+		showFillFormMessage()
 		disableButton(estimatedCostBtn)
 	}
+
 
 }
 
@@ -332,37 +338,44 @@ function triggerPost(endPoint,newPostedTrip) {
 			}, 4000);
 		})
 		
+		
+	}
+	function checkBookingDate(datePicked) {
+		const usersTrips = tripsRepo.filterById(currentUserId);
+		const match = usersTrips.find((trip) => trip.date === datePicked)	
+		if(match) {
+			return false
+		} else {
+			return true
+		}
+	}
 	
+	function createBookForm(e){
+		e.preventDefault()
+		showFormAreas(estimatedCostArea, entireBookForm)
+		makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput)
+		disableButton(formSubBtn);
+		entireBookForm.reset()
+		hideMessage(messageWrapper);
+		enableButton(estimatedCostBtn);
+}
+
+
+
+//  helper Functions
+function disableButton(button){
+	button.disabled = true; 
+}
+function enableButton(button) {
+	button.disabled = false; 
 }
 function showAreaMessage(area) {
 	area.classList.remove("hidden");
 }
-function checkBookingDate(datePicked) {
-	const usersTrips = tripsRepo.filterById(currentUserId);
-	const match = usersTrips.find((trip) => trip.date === datePicked)	
-	if(match) {
-		 showAreaMessage(messageWrapper)
-		messageForm.innerHTML = 'Please pick another date, date is not available!'
-		return false
-	} else {
-		return true
-	}
-}
-
-function createBookForm(e){
-	e.preventDefault()
-	showFormAreas(estimatedCostArea, entireBookForm)
-	makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput)
-	disableButton(formSubBtn);
-	entireBookForm.reset()
-	hideMessage(messageWrapper);
-	enableButton(estimatedCostBtn);
-}
-
 function showFormAreas(area1,area2) {
 	area1.classList.remove('hidden');
 	area2.classList.remove('hidden');
-
+	
 }
 function makeRequired(input1,input2,input3, input4) {
 	input1.required = true;
@@ -379,32 +392,7 @@ function resetInputs(input1,input2,input3,input4){
 function hideMessage(area1){
 	area1.classList.add('hidden')
 }
-function validInputs(input1,input2,input3,input4) {
- 	if(Number(input1) > 0 && Number(input2) > 0 && Number(input3) > 0 && checkBookingDate(input4)) {
-	 return true
-	}else {
-	return false
-	}
-}
-
-function inputMessageWarning(input1,input2,input3) {
-	console.log('boots',input1);
-	if(!input1) {
-		messageForm.innerHTML = 'Please pick a destination!🌎'
-		disableButton(formSubBtn)
-	}else if(Number(input2) <= 0) {
-		messageForm.innerHTML = 'Please pick a duration over 0 days 🗓️'
-		disableButton(formSubBtn)
-	}else if(Number(input3) <= 0) {
-		messageForm.innerHtml = 'To travel there needs to be a traveler 👤'
-		disableButton(formSubBtn)
-	} 
-	
-}
-
-function disableButton(button){
-	button.disabled = true; 
-}
-function enableButton(button) {
- button.disabled = false; 
+function showFillFormMessage() {
+	showAreaMessage(messageWrapper)
+	messageForm.innerHTML = 'Please fill out all the form inputs 📝'
 }
