@@ -1,34 +1,38 @@
-/* color pallet */
-/* #D7E9B9:MEDIUM
-#FFFBAC:LIGHEST
-#FFD495:MEDIUM
-#FAAB78:DARKEST */
+/* color pallet 
+#00ABB3: blue 
+#3C4048:black
+#B2B2B2: darkGrey
+#EAEAEA:white
+*/
 
 
 * {
   margin:0;
   padding:0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   font-family: 'Kalam',cursive;
 }
 
 /* semantic framing */
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    width: 100vw;
-    border: 2px solid black;
-    height: 5rem;
-    flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color:#3C4048;
+  height: 5rem;
+  flex-direction: row;
+}
+body {
+height:100vh;
+overflow-y: scroll;
+background-color:#EAEAEA ;
 }
 aside {
-display: flex;
+display:flex;
 flex-direction: column;
-border: 2px solid black;
 width: 30%;
-height:100vh;
-margin-top: 4rem;
+background-color:#3C4048;
 }
 form {
   border: 2px solid;
@@ -37,6 +41,7 @@ form {
   height: 23rem;
   display: flex;
   flex-direction: column;
+  background-color:#00ABB3;
 }
 fieldset{
   height: 100%;
@@ -52,58 +57,70 @@ width: 10rem;
 height: 2rem;
 }
 article {
-  border:1px solid;
   width: 73%;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 13rem;
+  background-color:#B2B2B2;
 }
+
 
 /* navBarArea */
 .logout-btn-wrapper > .logout {
-  height:100%;
-  width:7rem;
+  height: 100%;
+  width: 14rem;
+  background-color: #00ABB3;
+  font-size: 31px;
+  color: white;
+  cursor:grab;
+}
+.logout:hover {
+background-color:white;
+color:#00ABB3;
 }
 
 
 /* main Body Area */
 
-.customer-welcome {
-  display: flex;
-  position: relative;
-  border: 2px solid;
-  left: 31rem;
-  top: -50rem;
-  width: 63%;
-  height: 11rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .trips-display {
-  position: relative;
+  position: absolute;
   left: 31rem;
-  bottom: 46rem;
+  bottom: -17rem;
   border: 2px solid black;
   width: 63%;
   height: 86vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
+  background-color:#00ABB3;
+  
 }
-     
+.bookify-logo {
+  height:18rem;
+}
+
 
 /* Aside Area  */
 .logo-section {
-  height: 8rem;
+  height: 31rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border: 1px solid;
-
+  background-color:#B2B2B2;
+}
+.company-wrapper {
+  border:1px solid black;
+  height: 6rem;
+  width: 24rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#3C4048;
+  color:white;
+  font-size: x-large;
 }
 .form-container {
   display: flex;
@@ -111,23 +128,47 @@ article {
   align-items: center;
   flex-direction: column;
 }
+.disclaimer{
+  color:white;
+  font-size: larger;
+}
 .error-wrapper {
   display: flex;
   margin-top: 2rem;
   width: 100%;
-  height: 5rem;
+  height: 7rem;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  background-color: #B2B2B2;
+  
 }
+.error-message{
+  color:#3C4048;
+  font-size: x-large;
+}
+
+
 .form-intro-wrapper {
-  margin-top: 3rem;
+  margin-top: 6rem;
   display: flex;
-   border: sold;
+  border: sold;
   border: solid black;
-  height: 3rem;
-  width: 21rem;
+  height: 9rem;
+  width: 25rem;
   justify-content: center;
+  background-color:#B2B2B2;
+  align-items: center;
+}
+.form-intro {
+  height: 66%;
+  background-color:#00ABB3;
+  font-size: xx-large;
+  color:white;   
+}
+.form-intro:hover {
+  background-color: white;
+  color: #00ABB3;
+  cursor: grab;
 }
 
 .traveling-people-wrapper,
@@ -148,27 +189,44 @@ article {
   width: 57%;
   align-content: center;
   justify-content: center;
-  border:1px solid black; 
+  border:1px solid black;
+  background-color: #3C4048;
+  
 }
 .book-input-sub {
   height: 2rem;
   margin-top: 7px;
   width: 83%;
   border-radius: 3%;
+  background-color:#EAEAEA;
+  font-size: x-large;
+}
+.book-input-sub:hover{
+  cursor:grab;
+  background-color: white;
+  color: #00ABB3;
 }
 .estimated-cost-display{
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%; 
+  color:white;
 }
- .est-cost-wrapper > .show-est-cost {
-width: 9rem;
-height: 2rem;
+.est-cost-wrapper > .show-est-cost {
+  width: 13rem;
+  height: 2rem;
+  font-size: x-large; 
+}
+
+.show-est-cost:hover{
+  cursor: grab;
+  background-color: white;
+  color: #00ABB3;
 }
 .est-cost-wrapper {
   border: 1px solid black;
-  width: 12rem;
+  width: 15rem;
   display: flex;
   justify-content: center;
   height: 3rem;
@@ -178,7 +236,45 @@ height: 2rem;
   width: 100%;
   justify-content: space-around;
 }
- /* card displays */
+
+/* user Welcome Area  */
+.user-info-area{
+  display: flex;
+  flex-direction: column;
+  margin-left: -31rem;
+  width: 24rem;
+}
+.customer-welcome {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 6rem;
+  right: 3rem;
+  width: 63%;
+  height: 14rem;
+  margin-bottom: 3rem;
+  background-color:#3C4048;
+  color: white;
+}
+.customer-welcome > .hello-person {
+ font-size: 38px;
+}
+.annual-spending-wrapper,
+.today-wrapper{
+  display: flex;
+  border: 1px solid;
+  height: 4rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  background-color:#00ABB3;
+  font-size:15px;
+}
+
+/* card displays */
 .trip-info-card-past,
 .trip-info-card-pend,
 .trip-info-card-upcoming {
@@ -186,18 +282,29 @@ height: 2rem;
   width: 80%;
   display: flex;
   overflow-y: scroll;
+  scrollbar-width: 11px;
   flex-direction: column;
   align-items: center;
   height: 10rem;
-  
+  background-color: #3C4048;
 }
 .book-card {
   border: 1px solid black;
-  height: 20rem;
+  height: 26rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #EAEAEA;
+  margin-top: 3rem;
+  width: 66%;
+  box-shadow: 22px 13px;
 }
+.section-label{
+ color:#EAEAEA;
+ size:17px;
+ font-weight: 400;
+}
+
 .book-card >img {
   height:8rem;
   
