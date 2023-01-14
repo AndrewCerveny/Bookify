@@ -5,6 +5,7 @@
 //  Imported Images
 import './css/styles.css';
 import './images/turing-logo.png'
+import './images/nextTravel.jpg'
 // imported Files
 
 import Destination from './Destination';
@@ -282,7 +283,7 @@ function createPostTrip(e) {
 
 	}else {
 		showAreaMessage(messageWrapper)
-		messageForm.innerHTML = 'Please pick another date, date is not available!'
+		messageForm.innerHTML = 'Date already Book 💻! Click Want to Book a trip to restart!'
 	}
 	entireBookForm.reset()
 
@@ -397,5 +398,5 @@ function hideMessage(area1){
 }
 function showFillFormMessage() {
 	showAreaMessage(messageWrapper)
-	messageForm.innerHTML = 'Please fill out all the form inputs 📝'
+	messageForm.innerHTML = 'Please fill out all the form inputs then click Want to Book a trip to restart! 📝'
 }
