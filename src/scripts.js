@@ -188,7 +188,7 @@ function displayUpComingTrips() {
 			   </section>`
 		})
 	}else{
-		upcomingTripArea.innerHTML += `<p>There are no upcoming trips booked!</p>`
+		upcomingTripArea.innerHTML += `<h2 class="no-record">There are no upcoming trips booked!</h2>`
 	}
  
 
@@ -211,7 +211,7 @@ function displayPendingTrips() {
 		</section>`
 	})
  	} else {
-	 pendingTripArea.innerHTML += `<p> No Pending Trips! </p>`
+	 pendingTripArea.innerHTML += `<h2 class="no-record" No Pending Trips! </h2>`
  }
   	
 
@@ -235,7 +235,7 @@ function displayPastTrips() {
 	})
  
 }else{
-pastTripArea.innerHTML += `<p> No Past Trips! </p>`
+pastTripArea.innerHTML += `<h2 class="no-record"> No Past Trips! </h2>`
 
  }
 }
@@ -330,7 +330,7 @@ function triggerPost(endPoint,newPostedTrip) {
 		.then(data => {
 			gatherDatasets()
 			showAreaMessage(messageWrapper)
-			messageForm.innerHTML = 'Congrats,your trip has been booked 🛫'  
+			messageForm.innerHTML = 'Congrats, your trip has been booked!!'  
 			entireBookForm.reset()
 		})
 		.catch((err) => {
