@@ -284,6 +284,7 @@ function createPostTrip(e) {
 		showAreaMessage(messageWrapper)
 		messageForm.innerHTML = 'Please pick another date, date is not available!'
 	}
+	entireBookForm.reset()
 
 }
 
@@ -339,25 +340,27 @@ function triggerPost(endPoint,newPostedTrip) {
 		})
 		
 		
-	}
-	function checkBookingDate(datePicked) {
-		const usersTrips = tripsRepo.filterById(currentUserId);
-		const match = usersTrips.find((trip) => trip.date === datePicked)	
-		if(match) {
-			return false
-		} else {
-			return true
-		}
-	}
+}
+
+function checkBookingDate(datePicked) {
+	const usersTrips = tripsRepo.filterById(currentUserId);
+	const match = usersTrips.find((trip) => trip.date === datePicked)	
 	
-	function createBookForm(e){
-		e.preventDefault()
-		showFormAreas(estimatedCostArea, entireBookForm)
-		makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput)
-		disableButton(formSubBtn);
-		entireBookForm.reset()
-		hideMessage(messageWrapper);
-		enableButton(estimatedCostBtn);
+	if(match) {
+	return false
+	} else {
+	return true
+	}
+}
+	
+function createBookForm(e) {
+	e.preventDefault()
+	showFormAreas(estimatedCostArea, entireBookForm)
+	makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput)
+	disableButton(formSubBtn);
+	entireBookForm.reset()
+	hideMessage(messageWrapper);
+	enableButton(estimatedCostBtn);
 }
 
 
