@@ -11,9 +11,13 @@
   <title> Bookify </title>
 </head>
 <header>
-  <nav>
-    <div>  
+  <nav >
+    <div class="logout-btn-wrapper">  
       <button class="logout" type="submit"> Logout </button>
+    </div>
+    <div class="api-data-err-display">
+      <h2 class="post-Fail hidden"> Sorry, failed to transfer information. Please, try again later. 🛠️ </h2>
+      <h2 class ="fetch-Fail hidden"> Sorry, failed to retrieve information. Please, try again later. 🛠️ </h2>
     </div>
   </nav>
 </header>
@@ -28,23 +32,24 @@
     </section>
     <section class="form-container">
       <div class="form-intro-wrapper"> 
-        <h2 class="form-intro"> Want to Book a trip? </h2>
+        <button class="form-intro"> Want to Book a trip? </button>
       </div>
-      <div class="error-wrapper">
-        <h2 class="error-message"> Error message handler  </h2>
+      <div class="error-wrapper hidden">
+        <h2 class="error-message "> Error message handler  </h2>
       </div>
-    <form>
+    <form class="booking-form-container hidden">
       <fieldset class="Booking Options" id="Booking-form">
         <legend class="hidden"> Place Your booking requirements here </legend>
           <section class="date-wrapper">
             <h2> Choose a Date </h2>
               <label for="userChosenDate " class="hidden"> Calendar Input </label>
-              <input class = input-booking-date id="userChosenDate" type ="date" placeholder="Date">
+              <input class = input-booking-date id="userChosenDate" type ="date" placeholder="">
           </section>
           <section class=" destination-form-wrapper">
             <h2> Choose a Destination </h2>
               <label for="chosenDestination" class="hidden"> Destination Input </label>
-              <select class=input-destination id="chosenDestination" type="text" placeholder="Destinations">
+              <select class=input-destination id="chosenDestination" type="text" >
+                <option value="" > choose a destination </option>
                <!-- append destination names -->
             </select> 
           </section>
@@ -63,10 +68,13 @@
           </div>
       </fieldset>
     </form>
-    <section class="estimated-cost-display">
+    <section class="estimated-cost-display hidden">
+      <div class="est-cost-wrapper"> 
+        <button class="show-est-cost"> See Estimated Cost </button>
+      </div>
       <div class=" dollar-styler"> 
       <h2> Estimated Cost: </h2>
-      <h2 class="show-cost-display"> $1,300 dollars </h2>
+      <h2 class="show-cost-display"> Enter Form Field for Cost </h2>
       </div>
       <h3> *** Price includes a 10% travel agent fee </h3>
     </section>
@@ -86,7 +94,7 @@
   <section class="trips-display">
     <article class="upcoming-trips-display">
       <h2> Upcoming trips </h2>
-      <section class="trip-info-card-upcom"> 
+      <section class="trip-info-card-upcoming"> 
         <section class="book-card">
           <img src="" alt="destinationImg">
           <h2>Destination name: <span class="upcoming-destin"> name of destination </span></h2>

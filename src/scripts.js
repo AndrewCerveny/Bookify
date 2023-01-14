@@ -49,7 +49,7 @@ function snagApiData(url) {
 			return response.json()
 			}
 		})
-		.catch((err) => console.log(err.message))
+		.catch((err) => showAreaMessage(fetchErrDisplay))
 };
 
 function gatherDatasets() {
@@ -68,7 +68,8 @@ function gatherDatasets() {
 }
 
 // QuerySelectors
-const errorMessageForm =  document.querySelector('.error-message');
+const messageForm =  document.querySelector('.error-message');
+const messageWrapper =  document.querySelector('.error-wrapper');
 const logOutBtn = document.querySelector('.logout');
 const inputBookDate = document.getElementById('userChosenDate');
 const destinationSelect = document.getElementById('chosenDestination');
@@ -79,32 +80,34 @@ const estCostDisplay = document.querySelector('.show-cost-display');
 const firstName = document.querySelector(".welcome-person");
 const displayToday = document.querySelector(".today-Input");
 const annualSpent =  document.querySelector('.annual-Spent');
-const upcomingTripArea = document.querySelector('.trip-info-card-upcom');
+const upcomingTripArea = document.querySelector('.trip-info-card-upcoming');
 const pendingTripArea = document.querySelector('.trip-info-card-pend');
 const pastTripArea = document.querySelector('.trip-info-card-past'); 
-
-
-
-
-
-
-
-
-
-
-
-
-
+const postErrDisplay =  document.querySelector('.post-Fail');
+const fetchErrDisplay = document.querySelector('.fetch-Fail');
+const estimatedCostBtn = document.querySelector('.show-est-cost');
+const wantToBook = document.querySelector('.form-intro');
+const entireBookForm = document.querySelector('.booking-form-container');
+const estimatedCostArea = document.querySelector('.estimated-cost-display');
 
 
 
 // Event Listeners
 window.addEventListener('load', gatherDatasets)
  formSubBtn.addEventListener('click',function(e) {
-	
-	createPostTrip(e);
-	displayEstimatedCost()
+ createPostTrip(e);
+ resetInputs(destinationSelect,durationInput,inputBookDate,travelerInput)
+ disableButton(formSubBtn)
  })
+ estimatedCostBtn.addEventListener('click', function(e) {
+	 displayEstimatedCost(e)
+ } )
+ wantToBook.addEventListener('click', function(e) {
+	createBookForm(e)
+ })
+ 
+
+
 
 
 
@@ -259,21 +262,46 @@ function displayDestinations() {
 function createPostTrip(e) {
 	e.preventDefault()
 userChosenDate = inputBookDate.value.replaceAll("-","/");
-const postId = tripsRepo.getCompanyId();
-destinationId =  destinationSelect.value;
-daysTraveled = durationInput.value; 
-peopleTraveling = travelerInput.value; 
-const postTrip = {id:postId, userID:currentUserId, destinationID:Number(destinationId), travelers:Number(peopleTraveling), date:userChosenDate, duration: Number(daysTraveled), status:"pending", suggestedActivities:[]}
-const endPoint = 'trips';
-
-triggerPost(endPoint,postTrip);
+		const postId = tripsRepo.getCompanyId();
+		destinationId =  Number(destinationSelect.value);
+		daysTraveled = Number(durationInput.value); 
+		peopleTraveling = Number(travelerInput.value); 
+		const postTrip = {
+		id: postId, 
+		userID: currentUserId, 
+		destinationID: destinationId, 
+		travelers: peopleTraveling, 
+		date: userChosenDate, 
+		duration: daysTraveled, 
+		status:"pending", 
+		suggestedActivities:[]
+		}
+		const endPoint = 'trips';
+	triggerPost(endPoint,postTrip);
 
 }
 
-function displayEstimatedCost() {
-	estCostDisplay.innerHTML = ''
-	const matchedDestination = destinationRepo.findLocationById(Number(destinationId))
-	estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling)}`	
+function displayEstimatedCost(e) {
+	e.preventDefault()
+	makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput);
+
+	destinationId = Number(destinationSelect.value);
+	daysTraveled = Number(durationInput.value); 
+	peopleTraveling = Number(travelerInput.value); 
+	userChosenDate = inputBookDate.value.replaceAll("-","/");
+
+	if(validInputs(destinationSelect.value,durationInput.value,travelerInput.value,userChosenDate)) {
+		 destinationRepo.findLocationById(Number(destinationId))
+		console.log('BLOUSE',destinationRepo.getTotalCost(daysTraveled,peopleTraveling));
+		estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling)}`	
+		disableButton(estimatedCostBtn)
+		enableButton(formSubBtn)	
+	}else {
+		showAreaMessage(messageWrapper)
+		inputMessageWarning(destinationSelect.value, durationInput.value,travelerInput.value)
+		disableButton(estimatedCostBtn)
+	}
+
 }
 
 function triggerPost(endPoint,newPostedTrip) {
@@ -293,8 +321,90 @@ function triggerPost(endPoint,newPostedTrip) {
 		})
 		.then(data => {
 			gatherDatasets()
+			showAreaMessage(messageWrapper)
+			messageForm.innerHTML = 'Congrats,your trip has been booked 🛫'  
+			entireBookForm.reset()
 		})
-		.catch((err) => console.log(err.message))
-
+		.catch((err) => {
+			showAreaMessage(postErrDisplay)
+			setTimeout(() => {
+				hideMessage(postErrDisplay)
+			}, 4000);
+		})
+		
 	
+}
+function showAreaMessage(area) {
+	area.classList.remove("hidden");
+}
+function checkBookingDate(datePicked) {
+	const usersTrips = tripsRepo.filterById(currentUserId);
+	const match = usersTrips.find((trip) => trip.date === datePicked)	
+	if(match) {
+		 showAreaMessage(messageWrapper)
+		messageForm.innerHTML = 'Please pick another date, date is not available!'
+		return false
+	} else {
+		return true
+	}
+}
+
+function createBookForm(e){
+	e.preventDefault()
+	showFormAreas(estimatedCostArea, entireBookForm)
+	makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput)
+	disableButton(formSubBtn);
+	entireBookForm.reset()
+	hideMessage(messageWrapper);
+	enableButton(estimatedCostBtn);
+}
+
+function showFormAreas(area1,area2) {
+	area1.classList.remove('hidden');
+	area2.classList.remove('hidden');
+
+}
+function makeRequired(input1,input2,input3, input4) {
+	input1.required = true;
+	input2.required = true;
+	input3.required = true;
+	input4.required = true; 
+}
+function resetInputs(input1,input2,input3,input4){
+	input1.value = '';
+	input2.value = '';
+	input3.value = '';
+	input4.value = '';
+}
+function hideMessage(area1){
+	area1.classList.add('hidden')
+}
+function validInputs(input1,input2,input3,input4) {
+ 	if(Number(input1) > 0 && Number(input2) > 0 && Number(input3) > 0 && checkBookingDate(input4)) {
+	 return true
+	}else {
+	return false
+	}
+}
+
+function inputMessageWarning(input1,input2,input3) {
+	console.log('boots',input1);
+	if(!input1) {
+		messageForm.innerHTML = 'Please pick a destination!🌎'
+		disableButton(formSubBtn)
+	}else if(Number(input2) <= 0) {
+		messageForm.innerHTML = 'Please pick a duration over 0 days 🗓️'
+		disableButton(formSubBtn)
+	}else if(Number(input3) <= 0) {
+		messageForm.innerHtml = 'To travel there needs to be a traveler 👤'
+		disableButton(formSubBtn)
+	} 
+	
+}
+
+function disableButton(button){
+	button.disabled = true; 
+}
+function enableButton(button) {
+ button.disabled = false; 
 }
