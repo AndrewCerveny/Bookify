@@ -68,8 +68,8 @@ function gatherDatasets() {
 }
 
 // QuerySelectors
-const errorMessageForm =  document.querySelector('.error-message');
-const errorMessageWrapper =  document.querySelector('.error-wrapper');
+const messageForm =  document.querySelector('.error-message');
+const messageWrapper =  document.querySelector('.error-wrapper');
 const logOutBtn = document.querySelector('.logout');
 const inputBookDate = document.getElementById('userChosenDate');
 const destinationSelect = document.getElementById('chosenDestination');
@@ -262,7 +262,6 @@ function displayDestinations() {
 function createPostTrip(e) {
 	e.preventDefault()
 userChosenDate = inputBookDate.value.replaceAll("-","/");
-	if(validInputs(durationInput.value,travelerInput.value,destinationSelect.value,userChosenDate)) {
 		const postId = tripsRepo.getCompanyId();
 		destinationId =  Number(destinationSelect.value);
 		daysTraveled = Number(durationInput.value); 
@@ -279,32 +278,26 @@ userChosenDate = inputBookDate.value.replaceAll("-","/");
 		}
 		const endPoint = 'trips';
 	triggerPost(endPoint,postTrip);
-	showAreaMessage(errorMessageWrapper)
-	errorMessageForm.innerHTML = 'Congrats,your trip has been booked 🛫'  
-
-	} else {
- 	inputMessageWarning(destinationSelect.value,durationInput.value,travelerInput.value)
-	}
-	entireBookForm.reset()
 
 }
 
 function displayEstimatedCost(e) {
 	e.preventDefault()
 	makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput);
-	enableButton(formSubBtn);
+
 	destinationId = Number(destinationSelect.value);
 	daysTraveled = Number(durationInput.value); 
 	peopleTraveling = Number(travelerInput.value); 
 	userChosenDate = inputBookDate.value.replaceAll("-","/");
 
-	if(validInputs(destinationSelect.value,durationInput.value,travelerInput.value,userChosenDate)){
-		const matchedDestination = destinationRepo.findLocationById(Number(destinationId))
+	if(validInputs(destinationSelect.value,durationInput.value,travelerInput.value,userChosenDate)) {
+		 destinationRepo.findLocationById(Number(destinationId))
+		console.log('BLOUSE',destinationRepo.getTotalCost(daysTraveled,peopleTraveling));
 		estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling)}`	
 		disableButton(estimatedCostBtn)
 		enableButton(formSubBtn)	
 	}else {
-		 showAreaMessage(errorMessageWrapper)
+		showAreaMessage(messageWrapper)
 		inputMessageWarning(destinationSelect.value, durationInput.value,travelerInput.value)
 		disableButton(estimatedCostBtn)
 	}
@@ -328,12 +321,19 @@ function triggerPost(endPoint,newPostedTrip) {
 		})
 		.then(data => {
 			gatherDatasets()
+			showAreaMessage(messageWrapper)
+			messageForm.innerHTML = 'Congrats,your trip has been booked 🛫'  
+			entireBookForm.reset()
 		})
-		.catch((err) => showAreaMessage(postErrDisplay))
-
+		.catch((err) => {
+			showAreaMessage(postErrDisplay)
+			setTimeout(() => {
+				hideMessage(postErrDisplay)
+			}, 4000);
+		})
+		
 	
 }
-
 function showAreaMessage(area) {
 	area.classList.remove("hidden");
 }
@@ -341,10 +341,10 @@ function checkBookingDate(datePicked) {
 	const usersTrips = tripsRepo.filterById(currentUserId);
 	const match = usersTrips.find((trip) => trip.date === datePicked)	
 	if(match) {
-		 showAreaMessage(errorMessageWrapper)
-		errorMessageForm.innerHTML = 'Please pick another date, date has been already booked'
+		 showAreaMessage(messageWrapper)
+		messageForm.innerHTML = 'Please pick another date, date is not available!'
 		return false
-	} else{
+	} else {
 		return true
 	}
 }
@@ -355,7 +355,7 @@ function createBookForm(e){
 	makeRequired(inputBookDate,destinationSelect,durationInput,travelerInput)
 	disableButton(formSubBtn);
 	entireBookForm.reset()
-	hideMessage(errorMessageWrapper);
+	hideMessage(messageWrapper);
 	enableButton(estimatedCostBtn);
 }
 
@@ -380,7 +380,7 @@ function hideMessage(area1){
 	area1.classList.add('hidden')
 }
 function validInputs(input1,input2,input3,input4) {
- 	if(Number(input1) > 0 && Number(input2) > 0 && Number(input3) > 0 && checkBookingDate(input4)=== true) {
+ 	if(Number(input1) > 0 && Number(input2) > 0 && Number(input3) > 0 && checkBookingDate(input4)) {
 	 return true
 	}else {
 	return false
@@ -388,14 +388,15 @@ function validInputs(input1,input2,input3,input4) {
 }
 
 function inputMessageWarning(input1,input2,input3) {
-	if(!Number(input1) > 0) {
-		errorMessageForm.innerHTML = 'Please pick a destination!🌎'
+	console.log('boots',input1);
+	if(!input1) {
+		messageForm.innerHTML = 'Please pick a destination!🌎'
 		disableButton(formSubBtn)
-	}else if(!Number(input2) > 0) {
-		errorMessageForm.innerHTML = 'Please pick a duration over 0 days 🗓️'
+	}else if(Number(input2) <= 0) {
+		messageForm.innerHTML = 'Please pick a duration over 0 days 🗓️'
 		disableButton(formSubBtn)
-	}else if(!Number(input3) || Number(input3) <= 0) {
-		errorMessageForm.innerHtml = 'To travel there needs to be a traveler 👤'
+	}else if(Number(input3) <= 0) {
+		messageForm.innerHtml = 'To travel there needs to be a traveler 👤'
 		disableButton(formSubBtn)
 	} 
 	

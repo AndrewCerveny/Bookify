@@ -21,6 +21,7 @@ class DestinationRepository {
         return flightCost
     }
     getTotalCost(duration,travelers) {
+        console.log('PowerSuit',this.userSelectedDestination);
        const lodgingCost = this.estCostPerLodge(duration)
         const flightCost = this.estCostPerTraveler(travelers)
         const total = lodgingCost + flightCost
