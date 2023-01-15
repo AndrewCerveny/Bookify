@@ -158,8 +158,9 @@ function loadPage() {
 	displayDestinations();
 }
 function loginActivate() {
- const userName = userNameInput.value
-const firstPart = userName.substring(0,8);
+ 	const userName = userNameInput.value
+	const firstPart = userName.substring(0,8);
+	
 	if(firstPart === 'traveler' && userName.length < 11 && userName.length > 8 && passwordInput.value === 'travel') {
 		const letters = userName.split('');
 		const myNumbers = letters.filter((letter) => Number(letter))
