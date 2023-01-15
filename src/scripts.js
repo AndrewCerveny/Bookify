@@ -13,7 +13,6 @@ import Destination from './Destination';
 import DestinationRepository from './DestinationRepository';
 import Traveler from './Traveler';
 import TravelerRepository from './TravelerRepository';
-import Trips from './Trips';
 import TripsRepository from './TripsRepository';
 import Trip from './Trips';
 
@@ -173,7 +172,10 @@ const firstPart = userName.substring(0,8);
 		 currentUserId = currentUser.id
 		 showHomePage(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea);
 	}else {
- 	bookingHeadTitle.innerHTML = 'UN:traveler1-50 PW: travel'
+		bookingHeadTitle.innerHTML = 'UN:traveler1-50 PW: travel'
+		setTimeout(() => {
+		hideMessage(bookingHeadTitle)
+	}, 5000);
 	loginForm.reset() 
 	}
 }
@@ -455,15 +457,3 @@ area3.classList.remove('hidden');
 area4.classList.remove('hidden');
 area5.classList.remove('hidden');
 }
-
-
-
-showHomePage(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea);
-// toggleLogout(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea)
-
-
-// const entireLoginArea = document.querySelector('.login-area');
-// const asideArea = document.querySelector('.left-side-bar');
-// const customerWelcome = document.querySelector('.customer-welcome');
-// const tripsDisplayArea = document.querySelector('.trips-display');
-// const navBarArea = document.querySelector('.navBar');
