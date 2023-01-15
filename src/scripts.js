@@ -6,6 +6,7 @@
 import './css/styles.css';
 import './images/turing-logo.png'
 import './images/nextTravel.jpg'
+import './images/dateNight.jpg'
 // imported Files
 
 import Destination from './Destination';
@@ -90,11 +91,22 @@ const estimatedCostBtn = document.querySelector('.show-est-cost');
 const wantToBook = document.querySelector('.form-intro');
 const entireBookForm = document.querySelector('.booking-form-container');
 const estimatedCostArea = document.querySelector('.estimated-cost-display');
+const bookingHeadTitle = document.querySelector('.book-title');
+const userNameInput = document.getElementById('userName');
+const passwordInput = document.getElementById('password');
+const loginSub = document.querySelector('.login-Btn');
+const loginForm = document.querySelector('.login-form');
+// pages querySelectors
+const entireLoginArea = document.querySelector('.login-area');
+const asideArea = document.querySelector('.left-side-bar');
+const customerWelcome = document.querySelector('.customer-welcome');
+const tripsDisplayArea = document.querySelector('.trips-display');
+const navBarArea = document.querySelector('.navBar');
+
 
 
 
 // Event Listeners
-window.addEventListener('load', gatherDatasets)
  formSubBtn.addEventListener('click',function(e) {
  createPostTrip(e);
  resetInputs(destinationSelect,durationInput,inputBookDate,travelerInput)
@@ -106,8 +118,18 @@ window.addEventListener('load', gatherDatasets)
  wantToBook.addEventListener('click', function(e) {
 	createBookForm(e)
  })
- 
+ loginSub.addEventListener("click", function(e) {
+	e.preventDefault()
+   gatherDatasets()
+ })
 
+ logOutBtn.addEventListener("click", function(e){
+	e.preventDefault()
+	toggleLogout(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea);
+	loginForm.reset()
+ }) 
+
+ 
 
 
 
@@ -126,7 +148,7 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
 }
 
 function loadPage() {
-	createCurrentUser();
+	loginActivate() 
 	welcomeUser();
 	showTodayDate()
 	showYearSpending();
@@ -136,14 +158,25 @@ function loadPage() {
 	restrictDateRange();
 	displayDestinations();
 }
-
-function createCurrentUser() {
-	const getUser = travelerRepo.findById(25);
-	currentUser = getUser;
-	currentUserId = getUser.id
-	tripsRepo.filterById(currentUserId)
-	return getUser
-
+function loginActivate() {
+ const userName = userNameInput.value
+const firstPart = userName.substring(0,8);
+	if(firstPart === 'traveler' && userName.length < 11 && userName.length > 8 && passwordInput.value === 'travel') {
+		const letters = userName.split('');
+		const myNumbers = letters.filter((letter) => Number(letter))
+		
+		if(userName[9] === "0") {
+		myNumbers.push("0")
+		}
+		const getString = myNumbers.join('')
+		const userIdNumber = Number(getString)
+		 currentUser = travelerRepo.findById(userIdNumber);
+		 currentUserId = currentUser.id
+		 showHomePage(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea);
+	}else {
+ 	bookingHeadTitle.innerHTML = 'UN:traveler1-50 PW: travel'
+	loginForm.reset() 
+	}
 }
 
 function welcomeUser() {
@@ -400,3 +433,30 @@ function showFillFormMessage() {
 	showAreaMessage(messageWrapper)
 	messageForm.innerHTML = 'Please fill out all the form inputs then click Want to Book a trip to restart! 📝'
 }
+
+function toggleLogout(area1,area2,area3,area4,area5) {
+area1.classList.remove('hidden');
+area2.classList.add('hidden');
+area3.classList.add('hidden');
+area4.classList.add('hidden');
+area5.classList.add('hidden');
+}
+function showHomePage(area1,area2,area3,area4,area5) {
+area1.classList.add('hidden');
+area2.classList.remove('hidden');
+area3.classList.remove('hidden');
+area4.classList.remove('hidden');
+area5.classList.remove('hidden');
+}
+
+
+
+showHomePage(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea);
+// toggleLogout(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea)
+
+
+// const entireLoginArea = document.querySelector('.login-area');
+// const asideArea = document.querySelector('.left-side-bar');
+// const customerWelcome = document.querySelector('.customer-welcome');
+// const tripsDisplayArea = document.querySelector('.trips-display');
+// const navBarArea = document.querySelector('.navBar');
