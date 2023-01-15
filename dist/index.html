@@ -1,150 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Kalam&family=Saira+Condensed&display=swap"
-    rel="stylesheet">
-  <title> Bookify </title>
-</head>
-<header>
-  <nav class="hidden navBar" >
-    <div class="logout-btn-wrapper">  
-      <button class="logout" type="submit"> Logout </button>
-    </div>
-    <div class="api-data-err-display">
-      <h2 class="post-Fail hidden"> Sorry, failed to transfer information. Please, try again later. 🛠️ </h2>
-      <h2 class ="fetch-Fail hidden"> Sorry, failed to retrieve information. Please, try again later. 🛠️ </h2>
-    </div>
-  </nav>
-</header>
-<body>
-  <main>
-    <section class="login-area">
-      <div class="login-intro-wrapper"> 
-        <h2 class="book-title"> Bookify: Booking with speed! </h2>
-      <div class="entry-wrapper"> 
-        <img class='bookify-entry'src="./images/dateNight.jpg" alt="A candlelit dinner on a beach">
-      </div>
-      </div>
-      <form class="login-form">
-        <label class="username" for="userName"> UserName</label>
-          <input class="size-up" type="text" name="userName" id="userName" placeholder="userName">
-        <label class="password" for="password"> Password</label>
-          <input class="size-up" type ="password" name="password" id="password" placeholder="password">
-        </form>
-        <div class="login-Btn-wrapper">  
-        <button class="login-Btn"> Login </button>
-      </div>
-    </section>
-  <aside class="left-side-bar hidden ">
-    <section class="logo-section">
-      <div class="company-wrapper"> 
-        <h1 class="company-Name"> Welcome to Bookify! </h1>
-      </div>
-      <img class='bookify-logo'src="./images/nextTravel.jpg" alt="Bookify company Logo"> 
-    </section>
-    <section class="form-container">
-      <div class="form-intro-wrapper"> 
-        <button class="form-intro"> Want to Book a trip? </button>
-      </div>
-      <h2 class="disclaimer">***In order to buy a trip, estimate required</h2>
-      <div class="error-wrapper hidden">
-        <h3 class="error-message"> Error message handler </h3>
-      </div>
-    <form class="booking-form-container hidden">
-      <fieldset class="Booking Options" id="Booking-form">
-        <legend class="hidden"> Place Your booking requirements here </legend>
-          <section class="date-wrapper">
-            <h2> Choose a Date </h2>
-              <label for="userChosenDate" class="hidden"> Calendar Input </label>
-              <input class = input-booking-date name="userChosenDate"id="userChosenDate" type ="date" placeholder="">
-          </section>
-          <section class=" destination-form-wrapper">
-            <h2> Choose a Destination </h2>
-              <label for="chosenDestination" class="hidden"> Destination Input </label>
-              <select class=input-destination name="chosenDestination"id="chosenDestination" type="text" >
-                <option value="" > choose a destination </option>
-               <!-- append destination names -->
-            </select> 
-          </section>
-          <section class="duration-trip-wrapper">
-            <h2> Duration of trip </h2>
-              <label for="duration-length" class="hidden"> Duration length </label>
-              <input class="duration"name="duration-length" id="duration-length" type="number" placeholder="Duration" min="1">
-          </section>
-          <section class="traveling-people-wrapper">
-            <h2> How many Traveling? </h2>
-              <label for="traveler-quantity" class="hidden"> Duration length </label>
-              <input class="traveler-count" name="traveler-quantity" id="traveler-quantity" type="number" placeholder="Travelers" min="1">
-          </section>
-          <div class=" button-styler"> 
-            <button class="book-input-sub" type="submit"> Process Booking 🛒 </button>
-          </div>
-      </fieldset>
-    </form>
-    <section class="estimated-cost-display hidden">
-      <div class="est-cost-wrapper"> 
-        <button class="show-est-cost"> Estimated Cost💰 </button>
-      </div>
-      <div class=" dollar-styler"> 
-      <h2> Estimated Cost: </h2>
-      <h2 class="show-cost-display"> Need trip details 📝 </h2>
-      </div>
-      <h3> *** Price includes a 10% travel agent fee </h3>
-    </section>
-    </section>
-  </aside>
-  <section class="customer-welcome hidden ">
-
-    <h2 class="hello-person"> Welcome, <span class="welcome-person hello-person"> first Name </span> </h2>
-    <section class="user-info-area"> 
-      <div class="today-wrapper"> 
-        <h3> Today's date is <span class="today-Input"> </span> </h3>
-      </div>
-      <div class="annual-spending-wrapper"> 
-       <h3> Total spent this year </h3>
-        <h4 class="annual-Spent"> year money spent here </h4>
-        <h5 class="showFee"> *** 10% travel agent fee included </h5>
-      </div>
-    </section>
-  </section>
-  <section class="trips-display hidden">
-    <article class="upcoming-trips-display">
-      <h2 class="section-label"> Upcoming trips </h2>
-      <section class="trip-info-card-upcoming"> 
-        <section class="book-card">
-          <img src="" alt="destinationImg">
-          <h2>Destination: <span class="upcoming-destin"> name of destination </span></h2>
-          <h2>How many Travelers: <span class="upcoming-nums-travelers" number of travelers</span> </h2>
-          <h2>Date of Trip: <span class="upcoming-date">The Trips Date </span></h2>
-          <h2> Duration of Trip: <span class="upcoming-dur"> The Trips Duration </span></h2>
-          <h2> Status: <span class="upcoming-stat"> Status of trip </span></h2>
-        </section>
-      </section>
-    </article>
-    <article class="pending-trips-display">
-      <h2 class="section-label"> Pending trips </h2>
-      <section class="trip-info-card-pend">
-       <!-- append here -->
-      </section>
-    </article>
-    <article class="past-trips-display">
-      <h2 class="section-label"> Past trips </h2>
-      <section class="trip-info-card-past">
-        <!-- append here -->
-      </section>
-    </article>
-  </section>
-</main>
-
-  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-
-</body>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Kalam&family=Saira+Condensed&display=swap"
+					rel="stylesheet">
+			<title> Bookify </title>
+		</head>
+		<header>
+			<nav class="hidden navBar" >
+				<div class="logout-btn-wrapper">  
+					<button class="logout" type="submit"> Logout </button>
+				</div>
+				<div class="api-data-err-display">
+					<h2 class="post-Fail hidden"> Sorry, failed to transfer information. Please, try again later. 🛠️ </h2>
+					<h2 class ="fetch-Fail hidden"> Sorry, failed to retrieve information. Please, try again later. 🛠️ </h2>
+				</div>
+			</nav>
+		</header>
+		<body>
+			<main>
+				<section class="login-area">
+					<div class="login-intro-wrapper"> 
+						<h2 class="book-title"> Bookify: Booking with speed! </h2>
+					<div class="entry-wrapper"> 
+						<img class='bookify-entry'src="./images/dateNight.jpg" alt="A candlelit dinner on a beach">
+					</div>
+					</div>
+					<form class="login-form">
+						<label class="username" for="userName"> UserName</label>
+						<input class="size-up" type="text" name="userName" id="userName" placeholder="userName">
+						<label class="password" for="password"> Password</label>
+						<input class="size-up" type ="password" name="password" id="password" placeholder="password">
+					</form>
+					<div class="login-Btn-wrapper">  
+						<button class="login-Btn"> Login </button>
+					</div>
+				</section>
+				<aside class="left-side-bar hidden ">
+					<section class="logo-section">
+						<div class="company-wrapper"> 
+							<h1 class="company-Name"> Welcome to Bookify! </h1>
+						</div>
+						<img class='bookify-logo'src="./images/nextTravel.jpg" alt="Bookify company Logo"> 
+					</section>
+					<section class="form-container">
+						<div class="form-intro-wrapper"> 
+							<button class="form-intro"> Want to Book a trip? </button>
+						</div>
+						<h2 class="disclaimer">***In order to buy a trip, estimate required</h2>
+						<div class="error-wrapper hidden">
+							<h3 class="error-message"> Error message handler </h3>
+						</div>
+						<form class="booking-form-container hidden">
+							<fieldset class="Booking Options" id="Booking-form">
+								<legend class="hidden"> Place Your booking requirements here </legend>
+									<section class="date-wrapper">
+										<h2> Choose a Date </h2>
+										<label for="userChosenDate" class="hidden"> Calendar Input </label>
+											<input class = input-booking-date name="userChosenDate"id="userChosenDate" type ="date" placeholder="">
+									</section>
+									<section class=" destination-form-wrapper">
+										<h2> Choose a Destination </h2>
+										<label for="chosenDestination" class="hidden"> Destination Input </label>
+									<select class=input-destination name="chosenDestination"id="chosenDestination" type="text" >
+										<option value="" > choose a destination </option>
+										<!-- append destination names -->
+									</select> 
+									</section>
+									<section class="duration-trip-wrapper">
+										<h2> Duration of trip </h2>
+										<label for="duration-length" class="hidden"> Duration length </label>
+											<input class="duration"name="duration-length" id="duration-length" type="number" placeholder="Duration" min="1">
+									</section>
+									<section class="traveling-people-wrapper">
+										<h2> How many Traveling? </h2>
+										<label for="traveler-quantity" class="hidden"> Duration length </label>
+											<input class="traveler-count" name="traveler-quantity" id="traveler-quantity" type="number" placeholder="Travelers" min="1">
+									</section>
+									<div class=" button-styler"> 
+										<button class="book-input-sub" type="submit" tabindex="0"> Process Booking 🛒 </button>
+									</div>
+							</fieldset>
+						</form>
+					<section class="estimated-cost-display hidden">
+						<div class="est-cost-wrapper"> 
+							<button class="show-est-cost"> Estimated Cost💰 </button>
+						</div>
+						<div class=" dollar-styler"> 
+							<h2> Estimated Cost: </h2>
+							<h2 class="show-cost-display"> Need trip details 📝 </h2>
+						</div>
+							<h3> *** Price includes a 10% travel agent fee </h3>
+					</section>
+					</section>
+				</aside>
+				<section class="customer-welcome hidden ">
+					<h2 class="hello-person"> Welcome, <span class="welcome-person hello-person"> first Name </span> </h2>
+					<section class="user-info-area"> 
+						<div class="today-wrapper"> 
+							<h3> Today's date is <span class="today-Input"> </span> </h3>
+						</div>
+						<div class="annual-spending-wrapper"> 
+							<h3> Total spent this year </h3>
+							<h4 class="annual-Spent"> year money spent here </h4>
+							<h5 class="showFee"> *** 10% travel agent fee included </h5>
+						</div>
+					</section>
+				</section>
+				<section class="trips-display hidden">
+					<article class="upcoming-trips-display">
+						<h2 class="section-label"> Upcoming trips </h2>
+					<section class="trip-info-card-upcoming"> 
+					<section class="book-card-model">
+						<img src="" alt="destinationImg">
+							<h2>Destination: <span class="upcoming-destin"> name of destination </span></h2>
+							<h2>How many Travelers: <span class="upcoming-nums-travelers" number of travelers</span> </h2>
+							<h2>Date of Trip: <span class="upcoming-date">The Trips Date </span></h2>
+							<h2> Duration of Trip: <span class="upcoming-dur"> The Trips Duration </span></h2>
+							<h2> Status: <span class="upcoming-stat"> Status of trip </span></h2>
+					</section>
+					</section>
+					</article>
+					<article class="pending-trips-display">
+						<h2 class="section-label"> Pending trips </h2>
+					<section class="trip-info-card-pend">
+						<!-- append here -->
+					</section>
+					</article>
+					<article class="past-trips-display">
+						<h2 class="section-label"> Past trips </h2>
+					<section class="trip-info-card-past">
+						<!-- append here -->
+					</section>
+					</article>
+					</section>
+			</main>
+<!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+<!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+		<script src="bundle.js"></script>
+	</body>
 </html>
