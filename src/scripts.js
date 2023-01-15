@@ -36,7 +36,6 @@ let peopleTraveling;
 
 // global Const Variables
 const todayDate = "2022/10/06";
-yearAgo = "2021/10/06";
 const travelerUrl = 'http://localhost:3001/api/v1/travelers';
 const tripsUrl = 'http://localhost:3001/api/v1/trips';
 const destinationsUrl = 'http://localhost:3001/api/v1/destinations';
@@ -188,8 +187,16 @@ function welcomeUser() {
 function showTodayDate() {
 const userToday = formatDate(todayDate);
  displayToday.innerHTML = userToday
+ createYearAgo()
+ console.log(yearAgo);
  return userToday
 
+}
+function createYearAgo(){
+	const dateParts = todayDate.split("/")
+	const yearValue = dateParts[0] - 1
+	dateParts[0] = yearValue
+	yearAgo = dateParts.join("/");
 }
 
 function formatDate(date) {
