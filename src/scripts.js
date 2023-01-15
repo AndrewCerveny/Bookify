@@ -345,6 +345,7 @@ function displayEstimatedCost(e) {
 		estCostDisplay.innerHTML =`$ ${destinationRepo.getTotalCost(daysTraveled,peopleTraveling,destinationId)}`	
 			disableButton(estimatedCostBtn);
 			enableButton(formSubBtn);
+			formSubBtn.setAttribute('tabindex','0')
 		
 	}else {
 		showFillFormMessage()
