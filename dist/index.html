@@ -11,7 +11,7 @@
   <title> Bookify </title>
 </head>
 <header>
-  <nav >
+  <nav class="hidden navBar" >
     <div class="logout-btn-wrapper">  
       <button class="logout" type="submit"> Logout </button>
     </div>
@@ -23,7 +23,24 @@
 </header>
 <body>
   <main>
-  <aside class="left-side-bar">
+    <section class="login-area">
+      <div class="login-intro-wrapper"> 
+        <h2 class="book-title"> Bookify: Booking with speed! </h2>
+      <div class="entry-wrapper"> 
+        <img class='bookify-entry'src="./images/dateNight.jpg" alt="A candlelit dinner on a beach">
+      </div>
+      </div>
+      <form class="login-form">
+        <label class="username" for="userName"> UserName</label>
+          <input class="size-up" type="text" name="userName" id="userName" placeholder="userName">
+        <label class="password" for="password"> Password</label>
+          <input class="size-up" type ="password" name="password" id="password" placeholder="password">
+        </form>
+        <div class="login-Btn-wrapper">  
+        <button class="login-Btn"> Login </button>
+      </div>
+    </section>
+  <aside class="left-side-bar hidden ">
     <section class="logo-section">
       <div class="company-wrapper"> 
         <h1 class="company-Name"> Welcome to Bookify! </h1>
@@ -81,7 +98,7 @@
     </section>
     </section>
   </aside>
-  <section class="customer-welcome">
+  <section class="customer-welcome hidden ">
 
     <h2 class="hello-person"> Welcome, <span class="welcome-person hello-person"> first Name </span> </h2>
     <section class="user-info-area"> 
@@ -95,7 +112,7 @@
       </div>
     </section>
   </section>
-  <section class="trips-display">
+  <section class="trips-display hidden">
     <article class="upcoming-trips-display">
       <h2 class="section-label"> Upcoming trips </h2>
       <section class="trip-info-card-upcoming"> 
