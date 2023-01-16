@@ -114,17 +114,18 @@ const navBarArea = document.querySelector('.navBar');
 	 displayEstimatedCost(e)
  } )
  wantToBook.addEventListener('click', function(e) {
-	createBookForm(e)
+	createBookForm(e);
  })
  loginSub.addEventListener("click", function(e) {
-	e.preventDefault()
-   gatherDatasets()
+	e.preventDefault();
+   gatherDatasets();
  })
 
  logOutBtn.addEventListener("click", function(e){
 	e.preventDefault()
 	toggleLogout(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea);
-	loginForm.reset()
+	hideFormAreas(estimatedCostArea, entireBookForm);
+	loginForm.reset();
  }) 
 
  
@@ -423,6 +424,10 @@ function showFormAreas(area1,area2) {
 	area1.classList.remove('hidden');
 	area2.classList.remove('hidden');
 	
+}
+function hideFormAreas(area1,area2){
+	area1.classList.add('hidden');
+	area2.classList.add('hidden');
 }
 function makeRequired(input1,input2,input3, input4) {
 	input1.required = true;
