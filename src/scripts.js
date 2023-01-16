@@ -125,6 +125,7 @@ const navBarArea = document.querySelector('.navBar');
 	e.preventDefault()
 	toggleLogout(entireLoginArea,asideArea,customerWelcome,tripsDisplayArea,navBarArea);
 	hideFormAreas(estimatedCostArea, entireBookForm);
+	entireBookForm.reset();
 	loginForm.reset();
  }) 
 
