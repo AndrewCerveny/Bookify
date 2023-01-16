@@ -127,6 +127,7 @@ const navBarArea = document.querySelector('.navBar');
 	hideFormAreas(estimatedCostArea, entireBookForm);
 	entireBookForm.reset();
 	loginForm.reset();
+	hideMessage(messageWrapper);
  }) 
 
  
