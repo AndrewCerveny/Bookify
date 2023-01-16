@@ -29,6 +29,8 @@ Bookify offers a user the abiliities of:
 As a consumer, I would be able to have the ability to book a trip for the future and see trips from the past. I could also see how much these ticket cost before buying them. It's a much needed vacation tracker. 
  
 ## Screenshots / deployment link if applicable
+https://www.loom.com/share/9094420d183041dbb7eb7c69df884727
+
 
 
 ## Tech/framework used
