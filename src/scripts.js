@@ -149,7 +149,7 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
 }
 
 function loadPage() {
-	loginActivate() 
+	loginActivate(); 
 	welcomeUser();
 	showTodayDate()
 	showYearSpending();

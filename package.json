@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turingschool-examples/webpack-starter-kit.git"
+    "url": "git+https://github.com/AndrewCerveny/bookify.git"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
@@ -21,12 +21,15 @@
     "style-loader": "^2.0.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "homepage":"http://AndrewCerveny.github.io/bookify"
   },
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",
-    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   }
 }
